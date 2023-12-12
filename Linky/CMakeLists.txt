@@ -15,14 +15,14 @@ include(imgui)
 include(entt)
 
 target_link_libraries(${project_name} PUBLIC
-    external::glm
-    external::spdlog
-    external::stb
-    external::glad
-    external::assimp
-    external::glfw
-    external::imgui
-    external::entt
+  external::glm
+  external::spdlog
+  external::stb
+  external::glad
+  external::assimp
+  external::glfw
+  external::imgui
+  external::entt
 )
 
 # Include directories
