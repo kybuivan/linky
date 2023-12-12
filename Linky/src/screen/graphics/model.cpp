@@ -22,26 +22,28 @@ unsigned int TextureFromFile(const char* path, const std::string& directory)
     unsigned int textureID;
     glGenTextures(1, &textureID);
 
-    Image image = Image::load_from_file(filename);
+    int width, height, format;
+    auto pixels = Image::load_stb_image(filename, width, height, format);
     
-    if (!image.data.empty())
+    if (pixels != nullptr)
     {
-        GLenum format;
-        if (image.format == 1)
-            format = GL_RED;
-        else if (image.format == 3)
-            format = GL_RGB;
-        else if (image.format == 4)
-            format = GL_RGBA;
+        GLenum gFormat;
+        if (format == 1)
+            gFormat = GL_RED;
+        else if (format == 3)
+            gFormat = GL_RGB;
+        else if (format == 4)
+            gFormat = GL_RGBA;
 
         glBindTexture(GL_TEXTURE_2D, textureID);
-        glTexImage2D(GL_TEXTURE_2D, 0, format, image.width, image.height, 0, format, GL_UNSIGNED_BYTE, image.data.data());
+        glTexImage2D(GL_TEXTURE_2D, 0, gFormat, width, height, 0, gFormat, GL_UNSIGNED_BYTE, pixels);
         glGenerateMipmap(GL_TEXTURE_2D);
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        delete pixels;
     }
     else
     {
