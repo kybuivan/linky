@@ -12,6 +12,7 @@ include(assimp)
 include(glad)
 include(glfw)
 include(imgui)
+include(entt)
 
 target_link_libraries(${project_name} PUBLIC
     external::glm
@@ -21,6 +22,7 @@ target_link_libraries(${project_name} PUBLIC
     external::assimp
     external::glfw
     external::imgui
+    external::entt
 )
 
 # Include directories
