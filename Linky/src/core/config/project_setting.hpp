@@ -12,6 +12,7 @@ public:
     ProjectSetting() = default;
 
     ProjectConfig& get_config() { return m_config; }
+    
 private:
     ProjectConfig m_config;
 };
