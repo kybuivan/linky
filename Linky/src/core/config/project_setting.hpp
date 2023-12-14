@@ -5,6 +5,9 @@
 namespace Linky {
 struct ProjectConfig {
     std::string name = "Untitled";
+    int width = 1400;
+    int height = 900;
+    bool fullscreen = false;
 };
 
 class ProjectSetting {
