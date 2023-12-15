@@ -1,5 +1,5 @@
 #include <screen/graphics/model.hpp>
-#include <core/io/image.hpp>
+#include <core/io/image_loader.hpp>
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -23,7 +23,7 @@ unsigned int TextureFromFile(const char* path, const std::string& directory)
     glGenTextures(1, &textureID);
 
     int width, height, format;
-    auto pixels = Image::load_stb_image(filename, width, height, format);
+    auto pixels = ImageLoader::load_stb_image(filename, width, height, format);
     
     if (pixels != nullptr)
     {
