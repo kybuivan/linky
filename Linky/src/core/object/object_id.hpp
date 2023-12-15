@@ -1,5 +1,4 @@
 #pragma once
-
 #include <core/typedefs.h>
 
 namespace Linky {

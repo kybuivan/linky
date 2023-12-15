@@ -4,6 +4,17 @@
 namespace Linky {
 class Variant {
 public:
+    enum Type {
+        NIL,
+
+        BOOL,
+        INT,
+        FLOAT,
+        STRING,
+
+        VARIANT_MAX
+    };
+    
     Variant();
 private:
     union data
