@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <string>
 #include <core/object/object_id.hpp>
 #include <core/variant/variant.hpp>
@@ -18,7 +19,18 @@ struct PropertyInfo {
 class Object {
 public:
     Object();
+    virtual ~Object();
+
+    void render() { std::cout << "Object ID:" << mObjectID() << " is render\n";}
+    ObjectID get_instance_id() const { return mObjectID; }
+    void set_parrent(Object * parrent) { mParrent = parrent; }
+
+    Object * get_parrent() { return mParrent;}
+
+    virtual void add(Object *component) {}
+    virtual void remove(Object *component) {}
 private:
     ObjectID mObjectID;
+    Object *mParrent;
 };
 }
