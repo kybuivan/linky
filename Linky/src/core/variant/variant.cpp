@@ -5,32 +5,32 @@ namespace Linky {
 
 Variant::Variant(int i) {
     type = INT;
-    data = static_cast<int64_t>(i);
+    data = static_cast<std::int64_t>(i);
 }
 
 Variant::Variant(long i) {
     type = INT;
-    data = static_cast<int64_t>(i);
+    data = static_cast<std::int64_t>(i);
 }
 
-Variant::Variant(uint8_t i) {
+Variant::Variant(std::uint8_t i) {
     type = INT;
-    data = static_cast<int64_t>(i);
+    data = static_cast<std::int64_t>(i);
 }
 
-Variant::Variant(uint16_t i) {
+Variant::Variant(std::uint16_t i) {
     type = INT;
-    data = static_cast<int64_t>(i);
+    data = static_cast<std::int64_t>(i);
 }
 
-Variant::Variant(uint32_t i) {
+Variant::Variant(std::uint32_t i) {
     type = INT;
-    data = static_cast<int64_t>(i);
+    data = static_cast<std::int64_t>(i);
 }
 
-Variant::Variant(uint64_t i) {
+Variant::Variant(std::uint64_t i) {
     type = INT;
-    data = static_cast<int64_t>(i);
+    data = static_cast<std::int64_t>(i);
 }
 
 Variant::Variant(float d) {

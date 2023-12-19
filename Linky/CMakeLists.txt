@@ -54,3 +54,5 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
   "_SILENCE_ALL_CXX20_DEPRECATION_WARNINGS"
   "GLM_FORCE_DEPTH_ZERO_TO_ONE"
 )
+
+add_subdirectory(test)
