@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace Linky
+namespace linky
 {
 const float light_vertices[] =
 {

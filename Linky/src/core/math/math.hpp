@@ -24,7 +24,7 @@
 #include <glm/gtx/vector_angle.hpp>
 #include <glm/gtx/scalar_multiplication.hpp>
 
-namespace Linky
+namespace linky
 {
 using Vec2u = glm::uvec2;
 using Vec2i = glm::ivec2;

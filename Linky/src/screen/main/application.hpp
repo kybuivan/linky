@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Linky {
+namespace linky {
 
 class Application {
 public:

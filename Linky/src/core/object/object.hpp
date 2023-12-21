@@ -1,36 +1,43 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <map>
 #include <core/object/object_id.hpp>
+#include <core/template/ref.hpp>
 #include <core/variant/variant.hpp>
 
-namespace Linky {
+namespace linky {
+namespace core {
+using Dictionary = std::map<std::string, Ref<variant>>;
 struct PropertyInfo {
-    Variant::Type type = Variant::NIL;
+    variant::Type type = variant::NIL;
     std::string name;
+    Dictionary data;
 
     PropertyInfo() {}
-    PropertyInfo(const Variant::Type _type, const std::string _name)
+    PropertyInfo(const variant::Type _type, const std::string _name)
         : type(_type)
         , name(_name)
     {}
 };
 
-class Object {
+class object {
 public:
-    Object();
-    virtual ~Object();
+    object();
+    virtual ~object();
 
-    void render() { std::cout << "Object ID:" << mObjectID() << " is render\n";}
-    ObjectID get_instance_id() const { return mObjectID; }
-    void set_parrent(Object * parrent) { mParrent = parrent; }
+    void render() { std::cout << "object ID:" << m_object_id() << " is render\n";}
+    object_id get_instance_id() const { return m_object_id; }
+    void set_parrent(object * parrent) { m_parrent = parrent; }
 
-    Object * get_parrent() { return mParrent;}
+    object * get_parrent() { return m_parrent;}
 
-    virtual void add(Object *component) {}
-    virtual void remove(Object *component) {}
+    virtual void add(object *component) {}
+    virtual void remove(object *component) {}
 private:
-    ObjectID mObjectID;
-    Object *mParrent;
+
+    object_id m_object_id;
+    object *m_parrent;
 };
+}
 }

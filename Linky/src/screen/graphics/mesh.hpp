@@ -10,7 +10,7 @@
 
 #define MAX_BONE_INFLUENCE 4
 
-namespace Linky
+namespace linky
 {
 struct Vertex {
     glm::vec3 Position;

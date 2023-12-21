@@ -2,10 +2,11 @@
 #include <filesystem>
 #include <stb_image.h>
 
-namespace Linky {
+namespace linky {
+namespace core {
 namespace fs = std::filesystem;
 
-unsigned char* ImageLoader::load_stb_image(const std::string& path, int& width, int& height, int& nrComponents) {
+unsigned char* image_loader::load_stb_image(const std::string& path, int& width, int& height, int& nrComponents) {
     
     const auto filePath = fs::path(path);
 
@@ -15,5 +16,5 @@ unsigned char* ImageLoader::load_stb_image(const std::string& path, int& width, 
     
     return pixels;
 }
-
+}
 }

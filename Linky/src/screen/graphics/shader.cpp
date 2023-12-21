@@ -2,7 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-namespace Linky
+namespace linky
 {
 Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath)
 {

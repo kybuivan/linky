@@ -12,7 +12,7 @@
 #include <map>
 #include <vector>
 
-namespace Linky
+namespace linky
 {
 unsigned int TextureFromFile(const char* path, const std::string& directory)
 {
@@ -23,7 +23,7 @@ unsigned int TextureFromFile(const char* path, const std::string& directory)
     glGenTextures(1, &textureID);
 
     int width, height, format;
-    auto pixels = ImageLoader::load_stb_image(filename, width, height, format);
+    auto pixels = core::image_loader::load_stb_image(filename, width, height, format);
     
     if (pixels != nullptr)
     {

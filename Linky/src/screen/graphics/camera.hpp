@@ -1,7 +1,7 @@
 #pragma once
 #include "core/math/math.hpp"
 
-namespace Linky
+namespace linky
 {
 enum Directions
 {

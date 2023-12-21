@@ -8,7 +8,7 @@ struct aiNode;
 struct aiScene;
 struct aiMesh;
 struct aiMaterial;
-namespace Linky
+namespace linky
 {
 class Model
 {

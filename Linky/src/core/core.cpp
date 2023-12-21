@@ -1,5 +1,6 @@
 #include "core/core.hpp"
 
-namespace Linky
-{
+namespace linky {
+namespace core {
+}
 }

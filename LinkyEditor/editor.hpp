@@ -7,7 +7,7 @@
 #include <entt/entt.hpp>
 #include <imgui.h>
 
-namespace Linky {
+namespace linky {
 
 #ifndef MM_IEEE_ASSERT
     #define MM_IEEE_ASSERT(x) assert(x)

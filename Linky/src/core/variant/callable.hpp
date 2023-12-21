@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Linky {
+namespace linky {
 class Callable {
 public:
     Callable() = default;

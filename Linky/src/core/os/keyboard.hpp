@@ -2,6 +2,6 @@
 
 #include <cstdint>
 
-namespace Linky {
+namespace linky {
 
 }

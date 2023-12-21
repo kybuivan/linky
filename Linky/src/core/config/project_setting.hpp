@@ -2,21 +2,23 @@
 #include <string>
 #include <filesystem>
 
-namespace Linky {
-struct ProjectConfig {
+namespace linky {
+namespace core {
+struct project_config {
     std::string name = "Untitled";
     int width = 1400;
     int height = 900;
     bool fullscreen = false;
 };
 
-class ProjectSetting {
+class project_setting {
 public:
-    ProjectSetting() = default;
+    project_setting() = default;
 
-    ProjectConfig& get_config() { return m_config; }
+    project_config& get_config() { return m_config; }
     
 private:
-    ProjectConfig m_config;
+    project_config m_config;
 };
+}
 }

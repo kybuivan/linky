@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 
-namespace Linky {
+namespace linky {
 
 template<typename T> using Scope = std::unique_ptr<T>;
 

@@ -1,4 +1,6 @@
 #include "project_setting.hpp"
 
-namespace Linky {
+namespace linky {
+namespace core {
+}
 }

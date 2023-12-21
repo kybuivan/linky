@@ -1,10 +1,12 @@
 #pragma once
 #include <string>
 #include <variant>
+#include <functional>
 #include "core/typedefs.hpp"
 
-namespace Linky {
-class Variant {
+namespace linky {
+namespace core {
+class variant {
 public:
     using DataType = std::variant<bool, std::int64_t, double, std::string>;
 
@@ -16,27 +18,28 @@ public:
         DOUBLE,
         STRING,
 
-        VARIANT_MAX
+        variant_MAX
     };
     
-    Variant();
-    Variant(const Variant& var);
+    variant();
+    variant(const variant& var);
     
-    explicit Variant(int i);
-    explicit Variant(long i);
-    explicit Variant(std::uint8_t i);
-    explicit Variant(std::uint16_t i);
-    explicit Variant(std::uint32_t i);
-    explicit Variant(std::uint64_t i);
-    explicit Variant(float d);
-    explicit Variant(double d);
-    explicit Variant(const std::string& s);
-    explicit Variant(const char* s);
-    explicit Variant(const unsigned char* s);
-    explicit Variant(bool b);
+    explicit variant(int i);
+    explicit variant(long i);
+    explicit variant(std::uint8_t i);
+    explicit variant(std::uint16_t i);
+    explicit variant(std::uint32_t i);
+    explicit variant(std::uint64_t i);
+    explicit variant(float d);
+    explicit variant(double d);
+    explicit variant(const std::string& s);
+    explicit variant(const char* s);
+    explicit variant(const unsigned char* s);
+    explicit variant(bool b);
 
 private:
     DataType data;
     Type type = NIL;
 };
+}
 }

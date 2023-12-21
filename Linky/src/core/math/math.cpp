@@ -1,5 +1,5 @@
 #include "math.hpp"
 
-namespace Linky
+namespace linky
 {
 }

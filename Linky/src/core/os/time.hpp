@@ -2,7 +2,7 @@
 
 #include "core/object/object.hpp"
 
-namespace Linky {
+namespace linky {
 class Time : public Object {
 private:
     /* data */

@@ -1,65 +1,66 @@
-#include "core/variant/variant.hpp"
 #include "variant.hpp"
 
-namespace Linky {
+namespace linky {
+namespace core {
 
-Variant::Variant(int i) {
+variant::variant(int i) {
     type = INT;
     data = static_cast<std::int64_t>(i);
 }
 
-Variant::Variant(long i) {
+variant::variant(long i) {
     type = INT;
     data = static_cast<std::int64_t>(i);
 }
 
-Variant::Variant(std::uint8_t i) {
+variant::variant(std::uint8_t i) {
     type = INT;
     data = static_cast<std::int64_t>(i);
 }
 
-Variant::Variant(std::uint16_t i) {
+variant::variant(std::uint16_t i) {
     type = INT;
     data = static_cast<std::int64_t>(i);
 }
 
-Variant::Variant(std::uint32_t i) {
+variant::variant(std::uint32_t i) {
     type = INT;
     data = static_cast<std::int64_t>(i);
 }
 
-Variant::Variant(std::uint64_t i) {
+variant::variant(std::uint64_t i) {
     type = INT;
     data = static_cast<std::int64_t>(i);
 }
 
-Variant::Variant(float d) {
+variant::variant(float d) {
     type = DOUBLE;
     data = static_cast<double>(d);
 }
 
-Variant::Variant(double d) {
+variant::variant(double d) {
     type = DOUBLE;
     data = static_cast<double>(d);
 }
 
-Variant::Variant(const std::string &s) {
+variant::variant(const std::string &s) {
     type = STRING;
     data = static_cast<std::string>(s);
 }
 
-Variant::Variant(const char *s) {
+variant::variant(const char *s) {
     type = STRING;
     data = std::string(s);
 }
 
-Variant::Variant(const unsigned char *s) {
+variant::variant(const unsigned char *s) {
     type = STRING;
     data = std::string(reinterpret_cast<const char*>(s));
 }
 
-Variant::Variant(bool b) {
+variant::variant(bool b) {
     type = BOOL;
     data = static_cast<bool>(b);
 }
-} //namespace Linky
+} //namespace core
+} //namespace linky

@@ -1,13 +1,15 @@
 #pragma once
 #include <core/typedefs.hpp>
 
-namespace Linky {
-class ObjectID {
+namespace linky {
+namespace core {
+class object_id {
 public:
-    ObjectID();
+    object_id();
 
     std::uint64_t operator()() const { return mID; }
 private:
     std::uint64_t mID = 0;
 };
+}
 }

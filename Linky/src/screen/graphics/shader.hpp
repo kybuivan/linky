@@ -4,7 +4,7 @@
 #include <core/math/math.hpp>
 #include <string>
 
-namespace Linky
+namespace linky
 {
 class Shader
 {

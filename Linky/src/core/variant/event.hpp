@@ -1,8 +1,10 @@
 #pragma once
 #include <entt/signal/dispatcher.hpp>
 
-namespace Linky {
+namespace linky {
+namespace core {
 
 using EventDispatcher = entt::dispatcher;
 
+}
 }

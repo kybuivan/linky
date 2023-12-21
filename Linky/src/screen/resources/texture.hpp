@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 
-namespace Linky
+namespace linky
 {
 class Texture
 {

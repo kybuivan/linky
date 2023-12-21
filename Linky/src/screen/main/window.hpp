@@ -6,7 +6,7 @@
 
 struct GLFWwindow;
 
-namespace Linky
+namespace linky
 {
 class Window
 {

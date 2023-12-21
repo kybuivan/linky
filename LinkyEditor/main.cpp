@@ -26,7 +26,8 @@
 #include "../libs/emscripten/emscripten_mainloop_stub.h"
 #endif
 
-using namespace Linky;
+using namespace linky;
+using namespace linky::core;
 
 static void glfw_error_callback(int error, const char* description)
 {
@@ -71,7 +72,7 @@ namespace Components {
 } // Components
 
 template <>
-void Linky::ComponentEditorWidget<Components::Transform>(entt::registry& reg, entt::registry::entity_type e)
+void linky::ComponentEditorWidget<Components::Transform>(entt::registry& reg, entt::registry::entity_type e)
 {
     auto& t = reg.get<Components::Transform>(e);
     // the "##Transform" ensures that you can use the name "x" in multiple lables
@@ -83,7 +84,7 @@ void Linky::ComponentEditorWidget<Components::Transform>(entt::registry& reg, en
 }
 
 template <>
-void Linky::ComponentEditorWidget<Components::Velocity>(entt::registry& reg, entt::registry::entity_type e)
+void linky::ComponentEditorWidget<Components::Velocity>(entt::registry& reg, entt::registry::entity_type e)
 {
     auto& v = reg.get<Components::Velocity>(e);
     ImGui::DragFloat("x##Velocity", &v.x, 0.1f);

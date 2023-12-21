@@ -1,2 +1,10 @@
-#include "core/object/object.hpp"
+#include "object.hpp"
 
+namespace linky {
+namespace core {
+object::object()
+{
+    
+}
+}
+}
