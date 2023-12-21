@@ -1,8 +1,7 @@
 #pragma once
-#include "core/math/math.hpp"
-#include "core/graphics/shader.hpp"
-#include <string>
-#include <vector>
+#include <core/math/math.hpp>
+#include <core/graphics/shader.hpp>
+#include <core/string/string.hpp>
 
 namespace linky
 {

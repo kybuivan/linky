@@ -1,8 +1,8 @@
 #pragma once
 #include <functional>
-#include <string>
 #include <array>
 #include <core/math/math.hpp>
+#include <core/string/string.hpp>
 
 struct GLFWwindow;
 

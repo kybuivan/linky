@@ -1,7 +1,7 @@
 #include <screen/graphics/shader.hpp>
-#include <fstream>
-#include <sstream>
-#include <iostream>
+#include <core/string/string.hpp>
+#include <core/io/file_stream.hpp>
+
 namespace linky
 {
 Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath)

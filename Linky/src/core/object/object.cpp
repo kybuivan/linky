@@ -2,8 +2,7 @@
 
 namespace linky {
 namespace core {
-object::object()
-{
+object::object() {
     
 }
 }

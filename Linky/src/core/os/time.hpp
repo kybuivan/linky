@@ -3,11 +3,11 @@
 #include "core/object/object.hpp"
 
 namespace linky {
-class Time : public Object {
+class time : public object {
 private:
     /* data */
 public:
-    Time(/* args */);
-    ~Time();
+    time(/* args */);
+    ~time();
 };
 }

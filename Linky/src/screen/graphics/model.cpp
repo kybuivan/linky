@@ -1,16 +1,12 @@
-#include <screen/graphics/model.hpp>
 #include <core/io/image_loader.hpp>
+#include <core/io/file_stream.hpp>
+#include <core/string/string.hpp>
+#include <core/math/vector.hpp>
+#include <screen/graphics/model.hpp>
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
-
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <iostream>
-#include <map>
-#include <vector>
 
 namespace linky
 {

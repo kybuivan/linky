@@ -1,23 +1,23 @@
 #pragma once
 #include <iostream>
-#include <string>
 #include <map>
+#include <core/string/string.hpp>
 #include <core/object/object_id.hpp>
-#include <core/template/ref.hpp>
+#include <core/templates/ref.hpp>
 #include <core/variant/variant.hpp>
 
 namespace linky {
 namespace core {
-using Dictionary = std::map<std::string, Ref<variant>>;
-struct PropertyInfo {
-    variant::Type type = variant::NIL;
-    std::string name;
-    Dictionary data;
+using dictionary = std::map<std::string, ref<variant>>;
+struct property_info {
+    variant::type m_type = variant::type_nil;
+    std::string m_name;
+    dictionary m_data;
 
-    PropertyInfo() {}
-    PropertyInfo(const variant::Type _type, const std::string _name)
-        : type(_type)
-        , name(_name)
+    property_info() {}
+    property_info(const variant::type type, const std::string name)
+        : m_type(type)
+        , m_name(name)
     {}
 };
 

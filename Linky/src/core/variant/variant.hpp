@@ -1,24 +1,30 @@
 #pragma once
-#include <string>
 #include <variant>
 #include <functional>
-#include "core/typedefs.hpp"
+#include <list>
+#include <core/typedefs.hpp>
+#include <core/string/string.hpp>
+
 
 namespace linky {
 namespace core {
+struct property_info;
+
 class variant {
 public:
-    using DataType = std::variant<bool, std::int64_t, double, std::string>;
+    using data_type = std::variant<bool, std::int64_t, double, std::string>;
 
-    enum Type {
-        NIL,
+    enum type {
+        type_nil,
 
-        BOOL,
-        INT,
-        DOUBLE,
-        STRING,
+        type_bool,
+        type_int,
+        type_double,
+        type_string,
 
-        variant_MAX
+        type_dictionary,
+
+        type_max,
     };
     
     variant();
@@ -37,9 +43,10 @@ public:
     explicit variant(const unsigned char* s);
     explicit variant(bool b);
 
+    void get_property_list(std::list<property_info> *list) {}
 private:
-    DataType data;
-    Type type = NIL;
+    data_type m_data;
+    type m_type = type_nil;
 };
 }
 }

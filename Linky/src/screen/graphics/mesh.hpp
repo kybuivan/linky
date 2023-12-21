@@ -1,12 +1,10 @@
 #pragma once
 #include <glad/gl.h>
 
-#include "core/math/math.hpp"
-#include "screen/graphics/shader.hpp"
-#include "screen/resources/texture.hpp"
-
-#include <string>
-#include <vector>
+#include <core/math/math.hpp>
+#include <core/string/string.hpp>
+#include <screen/graphics/shader.hpp>
+#include <screen/resources/texture.hpp>
 
 #define MAX_BONE_INFLUENCE 4
 

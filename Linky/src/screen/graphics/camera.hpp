@@ -1,5 +1,5 @@
 #pragma once
-#include "core/math/math.hpp"
+#include <core/math/math.hpp>
 
 namespace linky
 {

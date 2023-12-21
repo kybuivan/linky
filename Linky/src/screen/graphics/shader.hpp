@@ -2,7 +2,7 @@
 
 #include <glad/gl.h>
 #include <core/math/math.hpp>
-#include <string>
+#include <core/string/string.hpp>
 
 namespace linky
 {
