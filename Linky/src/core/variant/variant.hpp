@@ -4,7 +4,9 @@
 #include <list>
 #include <core/typedefs.hpp>
 #include <core/string/string.hpp>
-
+#include <core/variant/dictionary.hpp>
+#include <core/variant/event.hpp>
+#include <core/variant/callable.hpp>
 
 namespace linky {
 namespace core {

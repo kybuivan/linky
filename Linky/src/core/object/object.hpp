@@ -1,14 +1,11 @@
 #pragma once
 #include <iostream>
-#include <map>
-#include <core/string/string.hpp>
 #include <core/object/object_id.hpp>
 #include <core/templates/ref.hpp>
 #include <core/variant/variant.hpp>
 
 namespace linky {
 namespace core {
-using dictionary = std::map<std::string, ref<variant>>;
 struct property_info {
     variant::type m_type = variant::type_nil;
     std::string m_name;
