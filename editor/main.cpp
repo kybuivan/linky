@@ -207,12 +207,12 @@ int main(int, char**)
 
     // build and compile shaders
     // -------------------------
-    Shader shader("./LinkyEditor/assets/shaders/belt.vert", "./LinkyEditor/assets/shaders/belt.frag");
-    Shader instanceShader("./LinkyEditor/assets/shaders/belt_instance.vert", "./LinkyEditor/assets/shaders/belt_instance.frag");
+    Shader shader("./assets/shaders/belt.vert", "./assets/shaders/belt.frag");
+    Shader instanceShader("./assets/shaders/belt_instance.vert", "./assets/shaders/belt_instance.frag");
     // load models
     // -----------
-    Model rock("./LinkyEditor/assets/models/rock/rock.obj");
-    Model planet("./LinkyEditor/assets/models/planet/planet.obj");
+    Model rock("./assets/models/rock/rock.obj");
+    Model planet("./assets/models/planet/planet.obj");
 
     entt::registry reg;
 

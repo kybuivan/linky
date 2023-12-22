@@ -4,7 +4,6 @@ file(GLOB_RECURSE src_files "${CMAKE_CURRENT_SOURCE_DIR}/*.hpp" "${CMAKE_CURRENT
 
 add_library(${project_name} STATIC ${src_files})
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/external)
 include(glm)
 include(spdlog)
 include(stb)
@@ -33,7 +32,7 @@ set (CMAKE_SHARED_LINKER_FLAGS "-Wl,--as-needed")
 
 # Include directories
 target_include_directories(${project_name} PUBLIC
-  "${CMAKE_CURRENT_SOURCE_DIR}/src"
+  "${CMAKE_CURRENT_SOURCE_DIR}"
 )
 
 # Compile definitions

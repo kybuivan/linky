@@ -1,2 +1,2 @@
-add_executable(LinkyEditor main.cpp)
-target_link_libraries(LinkyEditor PRIVATE linky::linky)
+add_executable(linky_editor main.cpp)
+target_link_libraries(linky_editor PRIVATE linky::linky)

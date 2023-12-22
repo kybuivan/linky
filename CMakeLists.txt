@@ -1,10 +1,12 @@
 cmake_minimum_required(VERSION 3.24.0 FATAL_ERROR)
 
-project(Linky CXX C)
+project(linky CXX C)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_VS_PLATFORM_NAME "x64")
+
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/external)
 
 # Global configuration types
 set(CMAKE_CONFIGURATION_TYPES
