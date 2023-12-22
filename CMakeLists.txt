@@ -17,5 +17,6 @@ set(CMAKE_CONFIGURATION_TYPES
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # Sub-projects
-add_subdirectory(Linky)
-add_subdirectory(LinkyEditor)
+add_subdirectory(src)
+add_subdirectory(editor)
+add_subdirectory(test)

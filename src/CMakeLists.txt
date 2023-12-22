@@ -1,6 +1,6 @@
-set(project_name Linky)
+set(project_name linky)
 
-file(GLOB_RECURSE src_files "src/*.hpp" "src/*.cpp")
+file(GLOB_RECURSE src_files "${CMAKE_CURRENT_SOURCE_DIR}/*.hpp" "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 
 add_library(${project_name} STATIC ${src_files})
 
@@ -32,12 +32,12 @@ target_link_libraries(${project_name} PUBLIC
 set (CMAKE_SHARED_LINKER_FLAGS "-Wl,--as-needed")
 
 # Include directories
-target_include_directories(${PROJECT_NAME} PUBLIC
+target_include_directories(${project_name} PUBLIC
   "${CMAKE_CURRENT_SOURCE_DIR}/src"
 )
 
 # Compile definitions
-target_compile_definitions(${PROJECT_NAME} PRIVATE
+target_compile_definitions(${project_name} PRIVATE
   "$<$<CONFIG:Debug>:"
   "LK_DEBUG;"
   "_DEBUG;"
@@ -55,4 +55,4 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
   "GLM_FORCE_DEPTH_ZERO_TO_ONE"
 )
 
-add_subdirectory(test)
+add_library(${project_name}::${project_name} ALIAS ${project_name})
