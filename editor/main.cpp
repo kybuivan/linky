@@ -44,7 +44,7 @@ const unsigned int SCR_WIDTH = 1200;
 const unsigned int SCR_HEIGHT = 700;
 
 // camera
-Camera camera(Vec3f(0.0f, 15.0f, 75.0f));
+camera cam(Vec3f(0.0f, 15.0f, 75.0f));
 float lastX = (float)SCR_WIDTH / 2.0;
 float lastY = (float)SCR_HEIGHT / 2.0;
 bool firstMouse = true;
@@ -211,8 +211,8 @@ int main(int, char**)
     Shader instanceShader("./assets/shaders/belt_instance.vert", "./assets/shaders/belt_instance.frag");
     // load models
     // -----------
-    Model rock("./assets/models/rock/rock.obj");
-    Model planet("./assets/models/planet/planet.obj");
+    model rock("./assets/models/rock/rock.obj");
+    model planet("./assets/models/planet/planet.obj");
 
     entt::registry reg;
 
@@ -272,9 +272,9 @@ int main(int, char**)
     // note: we're cheating a little by taking the, now publicly declared, VAO of the model's mesh(es) and adding new vertexAttribPointers
     // normally you'd want to do this in a more organized fashion, but for learning purposes this will do.
     // -----------------------------------------------------------------------------------------------------------------------------------
-    for (unsigned int i = 0; i < rock.meshes.size(); i++)
+    for (unsigned int i = 0; i < rock.m_meshes.size(); i++)
     {
-        unsigned int VAO = rock.meshes[i].VAO;
+        unsigned int VAO = rock.m_meshes[i].m_vao;
         glBindVertexArray(VAO);
         // set attribute pointers for matrix (4 times vec4)
         glEnableVertexAttribArray(3);
@@ -402,7 +402,7 @@ int main(int, char**)
 
         // configure transformation matrices
         Mat4f projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 1000.0f);
-        Mat4f view1 = camera.GetViewMatrix();;
+        Mat4f view1 = cam.GetViewMatrix();;
 
         // draw meteorites
         instanceShader.use();
@@ -410,12 +410,12 @@ int main(int, char**)
         instanceShader.setMat4("view", view1);
         instanceShader.setInt("texture_diffuse1", 0);
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, rock.textures_loaded[0].id);
-        for (unsigned int i = 0; i < rock.meshes.size(); i++)
+        glBindTexture(GL_TEXTURE_2D, rock.m_textures_loaded[0].m_id);
+        for (unsigned int i = 0; i < rock.m_meshes.size(); i++)
         {
-            glBindVertexArray(rock.meshes[i].VAO);
+            glBindVertexArray(rock.m_meshes[i].m_vao);
             glDrawElementsInstanced(
-                GL_TRIANGLES, rock.meshes[i].indices.size(), GL_UNSIGNED_INT, 0, amount
+                GL_TRIANGLES, rock.m_meshes[i].m_indices.size(), GL_UNSIGNED_INT, 0, amount
             );
         }
 
@@ -455,22 +455,22 @@ void processInput(GLFWwindow* window)
         glfwSetWindowShouldClose(window, true);
 
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera.ProcessKeyboard(kForward, deltaTime);
+        cam.ProcessKeyboard(kForward, deltaTime);
 
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera.ProcessKeyboard(kBackward, deltaTime);
+        cam.ProcessKeyboard(kBackward, deltaTime);
 
     if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        camera.ProcessKeyboard(kLeft, deltaTime);
+        cam.ProcessKeyboard(kLeft, deltaTime);
 
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        camera.ProcessKeyboard(kRight, deltaTime);
+        cam.ProcessKeyboard(kRight, deltaTime);
 
     if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-        camera.ProcessKeyboard(kUp, deltaTime);
+        cam.ProcessKeyboard(kUp, deltaTime);
 
     if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
-        camera.ProcessKeyboard(kDown, deltaTime);
+        cam.ProcessKeyboard(kDown, deltaTime);
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
@@ -503,12 +503,12 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
     lastX = xpos;
     lastY = ypos;
 
-    //camera.ProcessMouseMovement(xoffset, yoffset);
+    //cam.ProcessMouseMovement(xoffset, yoffset);
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
 // ----------------------------------------------------------------------
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
-    camera.ProcessMouseScroll(static_cast<float>(yoffset));
+    cam.ProcessMouseScroll(static_cast<float>(yoffset));
 }

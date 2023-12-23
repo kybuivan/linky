@@ -13,15 +13,15 @@ enum Directions
     kDown
 };
 
-class Camera
+class camera
 {
 public:
-    Camera(glm::vec3 init_pos)
+    camera(glm::vec3 init_pos)
     {
         position_ = init_pos;
     }
     
-    ~Camera(){}
+    ~camera(){}
 
     float zoom(){ return zoom_; }
 

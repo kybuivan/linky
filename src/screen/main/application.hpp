@@ -2,14 +2,14 @@
 
 namespace linky {
 
-class Application {
+class application {
 public:
-    Application() = default;
-    virtual ~Application() = default;
-    static void Init();
-    virtual void Run() = 0;
+    application() = default;
+    virtual ~application() = default;
+    static void init();
+    virtual void run() = 0;
 private:
-    static Application* Create();
+    static application* create();
 };
 
 }

@@ -8,28 +8,27 @@ struct aiNode;
 struct aiScene;
 struct aiMesh;
 struct aiMaterial;
-namespace linky
-{
-class Model
-{
+
+namespace linky {
+class model {
 public:
-    Model(std::string const& path, bool gamma = false);
-    void Draw(Shader shader);
+    model(std::string const& path, bool gamma = false);
+    void draw(Shader shader);
 
 private:
-    void loadModel(std::string const& path);
+    void load_model(std::string const& path);
 
-    void processNode(aiNode* node, const aiScene* scene);
+    void process_node(aiNode* node, const aiScene* scene);
 
-    Mesh processMesh(aiMesh* mesh, const aiScene* scene);
+    mesh process_mesh(aiMesh* mesh, const aiScene* scene);
 
-    std::vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName);
+    std::vector<texture> load_material_textures(aiMaterial* mat, aiTextureType type, std::string typeName);
 
 public:
-    std::vector<Texture> textures_loaded;
-    std::vector<Mesh>    meshes;
-    std::string directory;
-    std::string name;
-    bool gammaCorrection;
+    std::vector<texture> m_textures_loaded;
+    std::vector<mesh>    m_meshes;
+    std::string m_directory;
+    std::string m_name;
+    bool m_gamma_correction;
 };
 }
