@@ -2,9 +2,13 @@
 
 namespace linky {
 namespace core {
+variant::variant()
+{
+    m_type = type_nil;
+}
 
 variant::variant(int i) {
-    m_type = type_nil;
+    m_type = type_int;
     m_data = static_cast<std::int64_t>(i);
 }
 

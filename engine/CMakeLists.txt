@@ -33,6 +33,7 @@ set (CMAKE_SHARED_LINKER_FLAGS "-Wl,--as-needed")
 # Include directories
 target_include_directories(${project_name} PUBLIC
   "${CMAKE_CURRENT_SOURCE_DIR}"
+  "${PROJECT_BINARY_DIR}/include"
 )
 
 # Compile definitions

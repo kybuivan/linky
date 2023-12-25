@@ -1,12 +1,32 @@
 cmake_minimum_required(VERSION 3.24.0 FATAL_ERROR)
 
-project(linky CXX C)
+project(
+    "linky"
+    VERSION 0.1.0
+    LANGUAGES CXX
+)
+
+if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
+  message(FATAL_ERROR "In-source builds not allowed. Please make a new directory (called a build directory) and run CMake from there.\n")
+endif()
+
+option(${PROJECT_NAME}_USE_ALT_NAMES "Use alternative names for the project, such as naming the include directory all lowercase." ON)
+option(${PROJECT_NAME}_GENERATE_EXPORT_HEADER "Create a `project_export.h` file containing all exported symbols." OFF)
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_VS_PLATFORM_NAME "x64")
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/external)
+
+if(${PROJECT_NAME}_USE_ALT_NAMES)
+  string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWERCASE)
+  string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPERCASE)
+else()
+  set(PROJECT_NAME_LOWERCASE ${PROJECT_NAME})
+  set(PROJECT_NAME_UPPERCASE ${PROJECT_NAME})
+endif()
 
 # Global configuration types
 set(CMAKE_CONFIGURATION_TYPES
@@ -17,6 +37,12 @@ set(CMAKE_CONFIGURATION_TYPES
 )
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/version.hpp.in
+    ${PROJECT_BINARY_DIR}/include/core/version.hpp
+    @ONLY
+)
 
 # Sub-projects
 add_subdirectory(engine)
