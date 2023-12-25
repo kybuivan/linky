@@ -1,5 +1,5 @@
-set(SOURCES
-  "hello_test.cpp"
+file(GLOB_RECURSE SOURCES
+  "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
 )
 
 include(catch)
@@ -7,7 +7,7 @@ include(catch)
 set(LIB_NAME linky)
 set(TEST_NAME tests)
 
-add_executable(${TEST_NAME} test_main.cpp ${SOURCES})
+add_executable(${TEST_NAME} ${SOURCES})
 target_link_libraries(${TEST_NAME} PRIVATE ${LIB_NAME} external::catch)
 
 if (MSVC)

@@ -19,6 +19,6 @@ set(CMAKE_CONFIGURATION_TYPES
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # Sub-projects
-add_subdirectory(src)
+add_subdirectory(engine)
 add_subdirectory(editor)
 add_subdirectory(test)

@@ -5,5 +5,8 @@ namespace core {
 object::object() {
     
 }
+object::~object() {
+    
+}
 }
 }

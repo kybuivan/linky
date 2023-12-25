@@ -2,10 +2,10 @@
 
 namespace linky {
 namespace core {
-enum error {
-    OK,
-    FAILED,
-    ERR_MAX
+enum class error {
+    ok,
+    failed,
+    err_max
 };
 }
 }
