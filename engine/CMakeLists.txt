@@ -7,25 +7,27 @@ add_library(${project_name} STATIC ${src_files})
 include(glm)
 include(spdlog)
 include(stb)
+include(entt)
+#include(rttr)
 include(assimp)
 include(glad)
 include(glfw)
 include(imgui)
 include(imguizmo)
 include(imnodes)
-include(entt)
 
 target_link_libraries(${project_name} PUBLIC
   external::glm
   external::spdlog
   external::stb
+  external::entt
+  #external::rttr
   external::glad
   external::assimp
   external::glfw
   external::imgui
   external::imguizmo
   external::imnodes
-  external::entt
 )
 
 set (CMAKE_SHARED_LINKER_FLAGS "-Wl,--as-needed")

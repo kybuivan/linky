@@ -38,6 +38,16 @@ set(CMAKE_CONFIGURATION_TYPES
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+# Get Git commit hash
+execute_process(
+    COMMAND git rev-parse --short HEAD
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_COMMIT_HASH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+message("Git Commit Hash: ${GIT_COMMIT_HASH}")
+
 configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/version.hpp.in
     ${PROJECT_BINARY_DIR}/include/core/version.hpp

@@ -3,6 +3,7 @@
 #include <core/object/object_id.hpp>
 #include <core/templates/ref.hpp>
 #include <core/variant/variant.hpp>
+//#include <rttr/rttr_enable.h>
 
 namespace linky {
 namespace core {
