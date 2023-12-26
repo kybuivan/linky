@@ -4,6 +4,8 @@
 #include <glm/vec4.hpp>
 #include <vector>
 
-namespace linky
-{
+namespace linky {
+namespace core {
+using vec2 = glm::vec2;
+}
 }

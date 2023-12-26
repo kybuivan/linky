@@ -3,7 +3,7 @@
 
 namespace linky::core {
 
-TEST_CASE("error defs")
+TEST_CASE("[error defs] enum error")
 {
     error err = error::ok;
 

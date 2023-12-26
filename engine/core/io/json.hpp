@@ -1,7 +1,5 @@
 #pragma once
 
-namespace linky {
-namespace core {
+namespace linky::core {
     
-}
 }

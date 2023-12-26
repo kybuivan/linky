@@ -2,7 +2,7 @@
 #include <core/math/math.hpp>
 
 namespace linky::core {
-TEST_CASE ("math vec2") {
+TEST_CASE ("[math] vec2") {
     glm::vec2 pos = glm::vec2(0);
 
     REQUIRE(pos.x == 0);

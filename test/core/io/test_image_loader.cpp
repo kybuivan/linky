@@ -2,7 +2,7 @@
 #include <core/io/image_loader.hpp>
 
 namespace linky::core {
-TEST_CASE("image loader") {
+TEST_CASE("[image loader] load stb image") {
     int width = 0;
     int height = 0;
     int component = 0;
