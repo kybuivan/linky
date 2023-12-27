@@ -23,7 +23,16 @@
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
+#include <core/templates/singleton.hpp>
 
+namespace linky::core {
+class logger : public singleton<logger>
+{
+    friend singleton;
+public:
+
+};
+}
 // Client Logging Macros
 #define TRACE(...)    spdlog::trace(__VA_ARGS__)
 #define INFO(...)     spdlog::info(__VA_ARGS__)

@@ -11,7 +11,7 @@ TEST_CASE("[image loader] load stb image") {
     REQUIRE(width == 0);
     REQUIRE(height == 0);
     REQUIRE(component == 0);
-    REQUIRE(pixel == nullptr);
+    REQUIRE(pixel.has_value() == false);
 }
 
 }

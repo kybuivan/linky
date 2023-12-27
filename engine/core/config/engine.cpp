@@ -22,7 +22,8 @@
 #include "core/version.hpp"
 
 namespace linky::core {
-auto engine::get_version_info() const -> version_info {
+auto engine::get_version_info() const -> version_info
+{
     version_info ver;
     ver.major = LINKY_MAJOR_VERSION;
     ver.minor = LINKY_MINOR_VERSION;

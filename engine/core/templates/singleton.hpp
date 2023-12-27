@@ -20,14 +20,35 @@
 
 #pragma once
 
-#include <fstream>
-#include <sstream>
-#include <iostream>
-#include <filesystem>
-#include <core/string/string.hpp>
-
 namespace linky::core {
+template <typename T>
+class singleton {
+public:
+    singleton(const singleton&) = delete;
+    singleton(singleton&&) = delete;
+    singleton& operator=(const singleton&) = delete;
+    singleton& operator=(singleton&&) = delete;
 
-auto get_files_recursive(const std::string_view& dir_path) -> std::vector<std::filesystem::path>;
+    static T& get()
+    {
+        static T instance;
+        exists_mutable() = true;
 
+        return instance;
+    }
+
+    static bool exists()
+    {
+        return exists_mutable();
+    }
+
+protected:
+    singleton() = default;
+
+    static bool& exists_mutable()
+    {
+        static bool e = false;
+        return e;
+    }
+};
 }

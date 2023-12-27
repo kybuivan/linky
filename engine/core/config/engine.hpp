@@ -20,6 +20,7 @@
 
 #pragma once
 #include <core/object/object.hpp>
+#include <core/templates/singleton.hpp>
 
 namespace linky {
 namespace core {
@@ -31,7 +32,8 @@ struct version_info
     std::string commit;
 };
 
-class engine : public object {
+class engine : public object, public singleton<engine>
+{
 public:
     engine() {}
     virtual ~engine() {};
@@ -41,6 +43,12 @@ public:
     auto get_license() const -> std::string;
     auto get_author() const -> std::string;
 private:
+    friend singleton;
+
+    // Declare assignment operators as private to prevent assignment
+    engine& operator=(const engine&) = delete;
+    engine& operator=(engine&&) = delete;
+    
     double m_fps = 1;
     std::string m_version { "1.0" };
     std::vector<std::string> m_author;

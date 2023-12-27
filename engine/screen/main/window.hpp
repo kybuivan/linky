@@ -43,8 +43,8 @@ private:
 
 private:
     std::string title;
-    Vec2f position;
-    Vec2f size;
+    core::vec2 position;
+    core::vec2 size;
     bool resizable;
     GLFWwindow* handle;
 
