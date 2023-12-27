@@ -36,7 +36,7 @@ public:
     engine() {}
     virtual ~engine() {};
 
-    version_info get_version_info() const;
+    auto get_version_info() const -> version_info;
     auto get_version() const -> std::string;
     auto get_license() const -> std::string;
     auto get_author() const -> std::string;

@@ -48,7 +48,7 @@ public:
     object_id get_instance_id() const { return m_object_id; }
     void set_parrent(object * parrent) { m_parrent = parrent; }
 
-    object * get_parrent() { return m_parrent;}
+    auto get_parrent() const -> object* { return m_parrent;}
 
     virtual void add(object *component) {}
     virtual void remove(object *component) {}

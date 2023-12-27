@@ -20,10 +20,10 @@
 
 #pragma once
 
-namespace linky {
-class Callable {
+namespace linky::core {
+class callable {
 public:
-    Callable() = default;
-    ~Callable();
+    callable() = default;
+    ~callable();
 };
 }

@@ -20,12 +20,14 @@
 
 #pragma once
 #include <core/string/string.hpp>
+#include <expected>
 
 namespace linky {
 namespace core {
 class image_loader {
 public:
-    static unsigned char* load_stb_image(const std::string& path, int& width, int& height, int& nrComponents);
+    
+    static auto load_stb_image(const std::string& path, int& width, int& height, int& nrComponents) -> std::expected<unsigned char*, std::string>;
 };
 }
 }

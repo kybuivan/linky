@@ -20,17 +20,21 @@
 
 #include "core/io/image_loader.hpp"
 #include <filesystem>
+#include <format>
 #include <stb_image.h>
 
 namespace linky {
 namespace core {
 namespace fs = std::filesystem;
 
-unsigned char* image_loader::load_stb_image(const std::string& path, int& width, int& height, int& nrComponents) {
+auto image_loader::load_stb_image(const std::string& path, int& width, int& height, int& nrComponents) -> std::expected<unsigned char*, std::string> {
     
     const auto filePath = fs::path(path);
 
-    if (!fs::exists(filePath)) return nullptr;
+    if (!fs::exists(filePath))
+    {
+        return std::unexpected{std::format("Cannot load file: '{}'", filePath.string())};
+    }
 
     auto pixels = stbi_load(path.c_str(), &width, &height, &nrComponents, 0);
     

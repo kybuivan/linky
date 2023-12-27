@@ -21,7 +21,7 @@ unsigned int TextureFromFile(const char* path, const std::string& directory)
     int width, height, format;
     auto pixels = core::image_loader::load_stb_image(filename, width, height, format);
     
-    if (pixels != nullptr)
+    if (pixels)
     {
         GLenum gFormat;
         if (format == 1)
@@ -32,18 +32,18 @@ unsigned int TextureFromFile(const char* path, const std::string& directory)
             gFormat = GL_RGBA;
 
         glBindTexture(GL_TEXTURE_2D, textureID);
-        glTexImage2D(GL_TEXTURE_2D, 0, gFormat, width, height, 0, gFormat, GL_UNSIGNED_BYTE, pixels);
+        glTexImage2D(GL_TEXTURE_2D, 0, gFormat, width, height, 0, gFormat, GL_UNSIGNED_BYTE, pixels.value());
         glGenerateMipmap(GL_TEXTURE_2D);
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        delete pixels;
+        delete pixels.value();
     }
     else
     {
-        std::cout << "texture failed to load at path: " << path << std::endl;
+        std::cout << pixels.error() << std::endl;
     }
     return textureID;
 }
