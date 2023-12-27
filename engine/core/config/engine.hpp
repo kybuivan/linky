@@ -1,4 +1,4 @@
-// Copyright (c) 2023 Ky Bui Van
+// Copyright (c) 2023-2024 Ky Bui Van
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -48,7 +48,7 @@ private:
     // Declare assignment operators as private to prevent assignment
     engine& operator=(const engine&) = delete;
     engine& operator=(engine&&) = delete;
-    
+
     double m_fps = 1;
     std::string m_version { "1.0" };
     std::vector<std::string> m_author;
