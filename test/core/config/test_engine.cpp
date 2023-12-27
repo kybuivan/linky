@@ -6,9 +6,9 @@ namespace linky::core {
 TEST_CASE ("[engine] version info") {
     engine e;
     auto ver = e.get_version_info();
-    REQUIRE(ver.m_major == LINKY_MAJOR_VERSION);
-    REQUIRE(ver.m_minor == LINKY_MINOR_VERSION);
-    REQUIRE(ver.m_patch == LINKY_PATCH_VERSION);
-    REQUIRE(ver.m_commit == LINKY_COMMIT_HASH);
+    REQUIRE(ver.major == LINKY_MAJOR_VERSION);
+    REQUIRE(ver.minor == LINKY_MINOR_VERSION);
+    REQUIRE(ver.patch == LINKY_PATCH_VERSION);
+    REQUIRE(ver.commit == LINKY_COMMIT_HASH);
 }
 }
