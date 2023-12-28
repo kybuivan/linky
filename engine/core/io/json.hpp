@@ -19,6 +19,7 @@
 // SOFTWARE.
 
 #pragma once
+#include <nlohmann/json.hpp>
 
 namespace linky::core {
     

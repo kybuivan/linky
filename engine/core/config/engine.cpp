@@ -20,7 +20,6 @@
 
 #include "engine.hpp"
 #include "core/version.hpp"
-#include <nlohmann/json.hpp>
 
 namespace linky::core {
 auto engine::get_version_info() const -> version_info
@@ -32,5 +31,20 @@ auto engine::get_version_info() const -> version_info
     ver.commit = LINKY_COMMIT_HASH;
     std::cout << ver.commit << std::endl;
     return ver;
+}
+
+auto engine::get_version() const -> std::string
+{
+    return m_version;
+}
+
+auto engine::get_license() const -> std::string
+{
+    return m_license;
+}
+
+auto engine::get_author() const -> std::string
+{
+    return m_author;
 }
 }

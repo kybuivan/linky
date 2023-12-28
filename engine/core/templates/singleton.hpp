@@ -19,16 +19,12 @@
 // SOFTWARE.
 
 #pragma once
+#include <core/templates/noncopyable.hpp>
 
 namespace linky::core {
 template <typename T>
-class singleton {
+class singleton : public noncopyable {
 public:
-    singleton(const singleton&) = delete;
-    singleton(singleton&&) = delete;
-    singleton& operator=(const singleton&) = delete;
-    singleton& operator=(singleton&&) = delete;
-
     static T& get()
     {
         static T instance;
@@ -41,10 +37,7 @@ public:
     {
         return exists_mutable();
     }
-
 protected:
-    singleton() = default;
-
     static bool& exists_mutable()
     {
         static bool e = false;
