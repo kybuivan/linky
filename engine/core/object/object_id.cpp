@@ -19,7 +19,7 @@
 // SOFTWARE.
 
 #include "object_id.hpp"
-#include <random>
+#include "core/math/random.hpp"
 
 namespace linky {
 namespace core {

@@ -20,33 +20,8 @@
 
 #pragma once
 
-#include <core/templates/singleton.hpp>
-#include <core/io/file_stream.hpp>
+#include <core/math/vector.hpp>
 
 namespace linky::core {
-class logger : public singleton<logger>
-{
-    friend singleton;
-    logger(logger const&) = delete;
-    logger& operator=(logger const&) = delete;
-public:
-    enum type {
-        debug,
-        info,
-        warn,
-        error,
-        fatal
-    };
     
-    static void init();
-    
-private:
-    std::stringstream m_logs;
-};
 }
-// Client Logging Macros
-#define TRACE(...)
-#define INFO(...)
-#define WARN(...)
-#define ERROR(...)
-#define CRITICAL(...)

@@ -30,7 +30,10 @@ class project_settings : public object {
 public:
     project_settings();
     ~project_settings();
+    
 private:
+    std::string m_name;
+    std::string m_path;
 };
 }
 }

@@ -21,8 +21,7 @@
 #include "variant.hpp"
 #include <magic_enum.hpp>
 
-namespace linky {
-namespace core {
+namespace linky::core {
 variant::variant()
 {
     m_type = type_nil;
@@ -111,5 +110,4 @@ auto variant::name_to_type(std::string_view type_name) -> type
         return type::type_nil;
     }
 }
-} //namespace core
-} //namespace linky
+} //namespace linky::core

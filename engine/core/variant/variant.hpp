@@ -28,8 +28,7 @@
 #include <core/variant/event.hpp>
 #include <core/variant/callable.hpp>
 
-namespace linky {
-namespace core {
+namespace linky::core {
 struct property_info;
 
 class variant {
@@ -79,5 +78,4 @@ private:
     data_type m_data;
     type m_type = type_nil;
 };
-}
 }
