@@ -21,7 +21,18 @@
 #pragma once
 
 #include <cstdint>
+#include <array>
 
-namespace linky {
-
+namespace linky::core {
+class keyboard {
+public:
+    static void update();
+private:
+    keyboard() = delete;
+    keyboard(const keyboard&) = delete;
+    keyboard(keyboard&&) = delete;
+    ~keyboard() = delete;
+private:
+    static std::array<int8_t, 256> m_key_value;
+};
 }

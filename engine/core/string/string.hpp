@@ -21,3 +21,29 @@
 #pragma once
 #include <string>
 #include <string_view>
+#include <locale>
+#include <codecvt>
+#include <regex>
+
+namespace linky::core {
+
+inline auto to_wstring(const std::string& str) -> std::wstring
+{
+    std::wstring_convert<std::codecvt_utf8<wchar_t>> convert;
+    return convert.from_bytes(str);
+}
+
+inline auto to_upper_case(const std::string& str) -> std::string
+{
+    std::string result = str;
+    std::transform(str.begin(), str.end(), result.begin(), [](const auto& c) { return std::toupper(c); });
+    return result;
+}
+
+inline auto to_lower_case(const std::string& str) -> std::string
+{
+    std::string result = str;
+    std::transform(str.begin(), str.end(), result.begin(), [](const auto& c) { return std::tolower(c); });
+    return result;
+}
+}

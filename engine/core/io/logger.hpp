@@ -20,22 +20,32 @@
 
 #pragma once
 
-#include "spdlog/spdlog.h"
-#include "spdlog/fmt/ostr.h"
-#include "spdlog/sinks/stdout_color_sinks.h"
 #include <core/templates/singleton.hpp>
+#include <core/io/file_stream.hpp>
 
 namespace linky::core {
 class logger : public singleton<logger>
 {
     friend singleton;
+    logger(logger const&) = delete;
+    logger& operator=(logger const&) = delete;
 public:
-
+    enum type {
+        debug,
+        info,
+        warn,
+        error,
+        fatal
+    };
+    
+    static void init();
+private:
+    std::stringstream m_logs;
 };
 }
 // Client Logging Macros
-#define TRACE(...)    spdlog::trace(__VA_ARGS__)
-#define INFO(...)     spdlog::info(__VA_ARGS__)
-#define WARN(...)     spdlog::warn(__VA_ARGS__)
-#define ERROR(...)    spdlog::error(__VA_ARGS__)
-#define CRITICAL(...) spdlog::critical(__VA_ARGS__)
+#define TRACE(...)
+#define INFO(...)
+#define WARN(...)
+#define ERROR(...)
+#define CRITICAL(...)

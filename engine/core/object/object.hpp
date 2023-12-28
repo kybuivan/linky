@@ -23,19 +23,19 @@
 #include <core/object/object_id.hpp>
 #include <core/templates/ref.hpp>
 #include <core/variant/variant.hpp>
-//#include <rttr/rttr_enable.h>
+#include <entt/entity/registry.hpp>
 
 namespace linky {
 namespace core {
 struct property_info {
-    variant::type m_type = variant::type_nil;
-    std::string m_name;
-    dictionary m_data;
+    variant::type type = variant::type_nil;
+    std::string name;
+    dictionary data;
 
     property_info() {}
-    property_info(const variant::type type, const std::string name)
-        : m_type(type)
-        , m_name(name)
+    property_info(const variant::type _type, const std::string _name)
+        : type(_type)
+        , name(_name)
     {}
 };
 

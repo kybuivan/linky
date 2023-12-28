@@ -34,7 +34,7 @@ struct property_info;
 
 class variant {
 public:
-    using data_type = std::variant<bool, std::int64_t, double, std::string>;
+    using data_type = std::variant<bool, std::int64_t, double, std::string, void*>;
 
     enum type {
         type_nil,
@@ -60,11 +60,20 @@ public:
     explicit variant(std::uint64_t i);
     explicit variant(float d);
     explicit variant(double d);
-    explicit variant(const std::string& s);
+    explicit variant(const std::string_view& s);
     explicit variant(const char* s);
     explicit variant(const unsigned char* s);
     explicit variant(bool b);
 
+    auto get_type() const -> type;
+    auto get_type_name() const -> std::string_view;
+
+    auto is_valid() const -> bool;
+    auto is_null() const -> bool;
+    auto convert(type t) const -> bool;
+
+    static auto type_to_name(type t) -> std::string_view;
+    static auto name_to_type(std::string_view type_name) -> type;
     void get_property_list(std::list<property_info> *list) {}
 private:
     data_type m_data;

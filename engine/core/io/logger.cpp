@@ -19,3 +19,18 @@
 // SOFTWARE.
 
 #include "logger.hpp"
+#include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
+
+namespace linky::core {
+void logger::init() {
+    spdlog::set_pattern("%^[%T] %n: %v%$");
+
+    spdlog::enable_backtrace(32);
+    auto m_logs = spdlog::stdout_color_mt("ENGINE");
+    m_logs->set_level(spdlog::level::trace);
+
+    m_logs->info("Logger initialized and ready for use.");
+}
+}

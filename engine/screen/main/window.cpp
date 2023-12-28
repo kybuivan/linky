@@ -13,55 +13,55 @@ Window::Window() noexcept
 }
 
 Window::~Window() noexcept {
-    glfwMakeContextCurrent(handle);
+    glfwMakeContextCurrent(m_handle);
     //_texture.reset();
     //ImNodes::DestroyContext();
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
-    glfwDestroyWindow(handle);
+    glfwDestroyWindow(m_handle);
 }
 
 int Window::width() const noexcept {
     auto width = 0;
     auto height = 0;
-    glfwGetWindowSize(handle, &width, &height);
+    glfwGetWindowSize(m_handle, &width, &height);
     return static_cast<int>(width);
 }
 
 int Window::height() const noexcept {
     auto width = 0;
     auto height = 0;
-    glfwGetWindowSize(handle, &width, &height);
+    glfwGetWindowSize(m_handle, &width, &height);
     return static_cast<int>(height);
 }
 
 bool Window::should_close() const noexcept {
-    return glfwWindowShouldClose(handle);
+    return glfwWindowShouldClose(m_handle);
 }
 
 Window &Window::set_mouse_callback(Window::MouseButtonCallback cb) noexcept {
-    mouse_button_callback = std::move(cb);
+    m_mouse_button_callback = std::move(cb);
     return *this;
 }
 
 Window &Window::set_cursor_position_callback(Window::CursorPositionCallback cb) noexcept {
-    cursor_position_callback = std::move(cb);
+    m_cursor_position_callback = std::move(cb);
     return *this;
 }
 
 Window &Window::set_window_size_callback(Window::WindowSizeCallback cb) noexcept {
-    window_size_callback = std::move(cb);
+    m_window_size_callback = std::move(cb);
     return *this;
 }
 
 Window &Window::set_key_callback(Window::KeyCallback cb) noexcept {
-    key_callback = std::move(cb);
+    m_key_callback = std::move(cb);
     return *this;
 }
 
 Window &Window::set_scroll_callback(Window::ScrollCallback cb) noexcept {
-    scroll_callback = std::move(cb);
+    m_scroll_callback = std::move(cb);
     return *this;
 }
 
@@ -71,7 +71,7 @@ void Window::set_background(const std::array<uint8_t, 4u> *pixels, int width, in
 }
 
 void Window::set_should_close() noexcept {
-    glfwSetWindowShouldClose(handle, true);
+    glfwSetWindowShouldClose(m_handle, true);
 }
 
 void Window::_imgui_dock() noexcept {
@@ -115,7 +115,7 @@ void Window::_imgui_dock() noexcept {
 
 void Window::_begin_frame() noexcept {
     if (!should_close()) {
-        glfwMakeContextCurrent(handle);
+        glfwMakeContextCurrent(m_handle);
         glfwPollEvents();
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
@@ -135,13 +135,13 @@ void Window::_end_frame() noexcept {
         //     auto tl = (s - t * scale) * 0.5f;
         //     auto br = tl + t * scale;
         //     ImGui::GetBackgroundDrawList()->AddImage(
-        //         _texture->handle(), {tl.x, tl.y}, {br.x, br.y});
+        //         _texture->m_handle(), {tl.x, tl.y}, {br.x, br.y});
         // }
 
         // rendering
         ImGui::Render();
         int display_w, display_h;
-        glfwGetFramebufferSize(handle, &display_w, &display_h);
+        glfwGetFramebufferSize(m_handle, &display_w, &display_h);
         glViewport(0, 0, display_w, display_h);
         glClearColor(.15f, .15f, .15f, 1.f);
         glClear(GL_COLOR_BUFFER_BIT);
@@ -155,13 +155,13 @@ void Window::_end_frame() noexcept {
 			glfwMakeContextCurrent(backup_current_context);
 		}
 
-        glfwSwapBuffers(handle);
+        glfwSwapBuffers(m_handle);
     }
 }
 
 void Window::set_size(int _width, int _height) noexcept {
-    if (resizable) {
-        glfwSetWindowSize(handle, static_cast<int>(_width), static_cast<int>(_height));
+    if (m_resizable) {
+        glfwSetWindowSize(m_handle, static_cast<int>(_width), static_cast<int>(_height));
     } else {
         //logger("Ignoring resize on non-resizable window.");
     }

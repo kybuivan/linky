@@ -19,6 +19,7 @@
 // SOFTWARE.
 
 #pragma once
+#include <eventpp/callbacklist.h>
 
 namespace linky::core {
 class callable {

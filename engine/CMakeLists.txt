@@ -8,7 +8,10 @@ include(glm)
 include(spdlog)
 include(stb)
 include(entt)
-#include(rttr)
+include(magic_enum)
+include(eventpp)
+include(nlohmann_json)
+
 include(assimp)
 include(glad)
 include(glfw)
@@ -21,7 +24,9 @@ target_link_libraries(${project_name} PUBLIC
   external::spdlog
   external::stb
   external::entt
-  #external::rttr
+  external::magic_enum
+  external::eventpp
+  external::nlohmann_json
   external::glad
   external::assimp
   external::glfw

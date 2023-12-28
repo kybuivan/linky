@@ -20,6 +20,7 @@
 
 #include "engine.hpp"
 #include "core/version.hpp"
+#include <nlohmann/json.hpp>
 
 namespace linky::core {
 auto engine::get_version_info() const -> version_info

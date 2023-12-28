@@ -23,7 +23,7 @@ public:
     [[nodiscard]] int width() const noexcept;
     [[nodiscard]] int height() const noexcept;
     [[nodiscard]] bool should_close() const noexcept;
-    [[nodiscard]] auto get_handle() const noexcept { return handle; }
+    [[nodiscard]] auto get_handle() const noexcept { return m_handle; }
     [[nodiscard]] explicit operator bool() const noexcept { return !should_close(); }
 
     Window &set_mouse_callback(MouseButtonCallback cb) noexcept;
@@ -42,16 +42,16 @@ private:
     void _imgui_dock() noexcept;
 
 private:
-    std::string title;
-    core::vec2 position;
-    core::vec2 size;
-    bool resizable;
-    GLFWwindow* handle;
+    std::string m_title;
+    core::point m_position;
+    core::size m_size;
+    bool m_resizable;
+    GLFWwindow* m_handle;
 
-    MouseButtonCallback mouse_button_callback;
-    CursorPositionCallback cursor_position_callback;
-    WindowSizeCallback window_size_callback;
-    KeyCallback key_callback;
-    ScrollCallback scroll_callback;
+    MouseButtonCallback m_mouse_button_callback;
+    CursorPositionCallback m_cursor_position_callback;
+    WindowSizeCallback m_window_size_callback;
+    KeyCallback m_key_callback;
+    ScrollCallback m_scroll_callback;
 };
 }

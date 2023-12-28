@@ -44,11 +44,11 @@
 #include <glm/gtx/vector_angle.hpp>
 #include <glm/gtx/scalar_multiplication.hpp>
 
-namespace linky
-{
-using Vec3u = glm::uvec3;
-using Vec3i = glm::ivec3;
-using Vec3f = glm::vec3;
+namespace linky::core {
+using point = vec2;
+using size = vec2;
+using rect = vec4;
+using color = vec4;
 
 using Vec4i = glm::ivec4;
 using Vec4f = glm::vec4;

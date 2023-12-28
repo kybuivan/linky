@@ -44,7 +44,7 @@ const unsigned int SCR_WIDTH = 1200;
 const unsigned int SCR_HEIGHT = 700;
 
 // camera
-camera cam(Vec3f(0.0f, 15.0f, 75.0f));
+camera cam(vec3(0.0f, 15.0f, 75.0f));
 float lastX = (float)SCR_WIDTH / 2.0;
 float lastY = (float)SCR_HEIGHT / 2.0;
 bool firstMouse = true;
@@ -240,15 +240,15 @@ int main(int, char**)
         float y = displacement * 0.4f; // keep height of asteroid field smaller compared to width of x and z
         displacement = (rand() % (int)(2 * offset * 100)) / 100.0f - offset;
         float z = cos(angle) * radius + displacement;
-        model = glm::translate(model, Vec3f(x, y, z));
+        model = glm::translate(model, vec3(x, y, z));
 
         // 2. scale: Scale between 0.05 and 0.25f
         float scale = static_cast<float>((rand() % 20) / 100.0 + 0.05);
-        model = glm::scale(model, Vec3f(scale));
+        model = glm::scale(model, vec3(scale));
 
         // 3. rotation: add random rotation around a (semi)randomly picked rotation axis vector
         float rotAngle = static_cast<float>((rand() % 360));
-        model = glm::rotate(model, rotAngle, Vec3f(0.4f, 0.6f, 0.8f));
+        model = glm::rotate(model, rotAngle, vec3(0.4f, 0.6f, 0.8f));
 
         // 4. now add to list of matrices
         modelMatrices[i] = model;
@@ -381,11 +381,11 @@ int main(int, char**)
             auto entityIdIntegral = entt::to_integral(entityId);
             auto& model = modelMatrices[entityIdIntegral];
             model = Mat4f(1.0f); // Initialize as identity matrix
-            model = glm::translate(model, Vec3f(transform.x, transform.y, transform.z));
+            model = glm::translate(model, vec3(transform.x, transform.y, transform.z));
             // 2. scale: Scale between 0.05 and 0.25f
-            model = glm::scale(model, Vec3f(transform.scale));
+            model = glm::scale(model, vec3(transform.scale));
 
-            model = glm::rotate(model, transform.rotate, Vec3f(0.4f, 0.6f, 0.8f));
+            model = glm::rotate(model, transform.rotate, vec3(0.4f, 0.6f, 0.8f));
         }
 
         // Rendering
