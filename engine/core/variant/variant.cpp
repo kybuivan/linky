@@ -72,16 +72,6 @@ variant::variant(const std::string_view &s) {
     m_data = static_cast<std::string>(s);
 }
 
-variant::variant(const char *s) {
-    m_type = type_string;
-    m_data = std::string(s);
-}
-
-variant::variant(const unsigned char *s) {
-    m_type = type_string;
-    m_data = std::string(reinterpret_cast<const char*>(s));
-}
-
 variant::variant(bool b) {
     m_type = type_bool;
     m_data = static_cast<bool>(b);

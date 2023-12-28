@@ -20,6 +20,7 @@
 
 #include "object_id.hpp"
 #include "core/math/random.hpp"
+#include "core/math/uuid_generator.hpp"
 
 namespace linky {
 namespace core {

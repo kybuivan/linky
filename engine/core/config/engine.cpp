@@ -43,7 +43,7 @@ auto engine::get_license() const -> std::string
     return m_license;
 }
 
-auto engine::get_author() const -> std::string
+auto engine::get_author() const -> std::vector<std::string>
 {
     return m_author;
 }

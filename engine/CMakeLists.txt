@@ -11,6 +11,8 @@ include(entt)
 include(magic_enum)
 include(eventpp)
 include(nlohmann_json)
+include(cereal)
+include(stduuid)
 
 include(assimp)
 include(glad)
@@ -27,6 +29,8 @@ target_link_libraries(${project_name} PUBLIC
   external::magic_enum
   external::eventpp
   external::nlohmann_json
+  external::cereal
+  external::stduuid
   external::glad
   external::assimp
   external::glfw

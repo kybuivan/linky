@@ -19,38 +19,10 @@
 // SOFTWARE.
 
 #pragma once
-#include <core/object/object.hpp>
-#include <core/templates/singleton.hpp>
-#include <core/templates/noncopyable.hpp>
 
-namespace linky {
-namespace core {
-struct version_info
-{
-    uint8_t major;
-    uint8_t minor;
-    uint8_t patch;
-    std::string commit;
-};
-
-class engine : public object, public singleton<engine>
-{
+namespace linky::core {
+class noncreateable {
 public:
-    engine() {}
-    virtual ~engine() {};
-
-    auto get_version_info() const -> version_info;
-    auto get_version() const -> std::string;
-    auto get_license() const -> std::string;
-    auto get_author() const -> std::vector<std::string>;
-private:
-    friend singleton;
-
-    double m_fps = 1;
-    std::string m_version { "1.0" };
-    std::vector<std::string> m_author;
-    std::string m_license { "MIT" };
-    std::string m_copyright { "Your Copyright Here" };
-};
+    noncreateable() = delete;
 }
 }

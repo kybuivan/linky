@@ -27,6 +27,9 @@
 #include <core/variant/dictionary.hpp>
 #include <core/variant/event.hpp>
 #include <core/variant/callable.hpp>
+#include <cereal/types/unordered_map.hpp>
+#include <cereal/types/memory.hpp>
+#include <cereal/archives/binary.hpp>
 
 namespace linky::core {
 struct property_info;
@@ -60,13 +63,19 @@ public:
     explicit variant(float d);
     explicit variant(double d);
     explicit variant(const std::string_view& s);
-    explicit variant(const char* s);
-    explicit variant(const unsigned char* s);
     explicit variant(bool b);
 
     auto get_type() const -> type;
     auto get_type_name() const -> std::string_view;
+    auto get_bool() const -> bool;
+    auto get_int() const -> int;
+    auto get_string() const -> std::string;
+    auto get_double() const -> double;
 
+    void set_bool(bool b);
+    void set_int(int i);
+    void set_double(double d);
+    void set_string(std::string_view s);
     auto is_valid() const -> bool;
     auto is_null() const -> bool;
     auto convert(type t) const -> bool;

@@ -28,7 +28,5 @@ struct random_number_generator {
 
     random_number_generator() {}
     random_number_generator(uint64_t seed) { state = seed; }
-
-
 };
 }
