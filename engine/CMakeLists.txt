@@ -13,6 +13,8 @@ include(eventpp)
 include(nlohmann_json)
 include(cereal)
 include(stduuid)
+include(lua)
+include(sol2)
 
 include(assimp)
 include(glad)
@@ -31,6 +33,8 @@ target_link_libraries(${project_name} PUBLIC
   external::nlohmann_json
   external::cereal
   external::stduuid
+  external::lua
+  external::sol2
   external::glad
   external::assimp
   external::glfw

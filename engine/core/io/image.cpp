@@ -18,27 +18,27 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#include "image.hpp"
 #include "core/io/image_loader.hpp"
-#include <filesystem>
-#include <format>
-#include <stb_image.h>
 
-namespace linky {
-namespace core {
-namespace fs = std::filesystem;
-
-auto image_loader::load_stb_image(const std::string_view& path, int& width, int& height, int& nrComponents) -> std::expected<unsigned char*, std::string> {
-    
-    const auto filePath = fs::path(path);
-
-    if (!fs::exists(filePath))
-    {
-        return std::unexpected{std::format("Cannot load file: '{}'", filePath.string())};
-    }
-
-    auto pixels = stbi_load(std::string(path).data(), &width, &height, &nrComponents, 0);
-    
-    return pixels;
+namespace linky::core {
+void image::load(const std::string_view& path)
+{
+    //image_loader::load_stb_image();
 }
+
+auto image::get_width() const -> int
+{
+    return m_width;
+}
+
+auto image::get_height() const -> int
+{
+    return m_height;
+}
+
+auto image::get_data() const -> std::vector<std::byte>
+{
+    return m_data;
 }
 }

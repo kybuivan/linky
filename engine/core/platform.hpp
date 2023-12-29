@@ -18,27 +18,32 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "core/io/image_loader.hpp"
-#include <filesystem>
-#include <format>
-#include <stb_image.h>
+#pragma once
 
-namespace linky {
-namespace core {
-namespace fs = std::filesystem;
+#include <core/typedefs.hpp>
 
-auto image_loader::load_stb_image(const std::string_view& path, int& width, int& height, int& nrComponents) -> std::expected<unsigned char*, std::string> {
-    
-    const auto filePath = fs::path(path);
+#if defined(_MSC_VER) && !defined(__INTEL_COMPILER)
+    #define LINKY_COMPILER_MSVC
+#else
+    #define LINKY_COMPILER_INTEL
+#endif
+#if defined(__GNUC__) && !defined(__clang__)
+    #define LINKY_COMPILER_GNU
+#endif
+#if defined(__clang__)
+    #define LINKY_COMPILER_CLANG
+#endif
 
-    if (!fs::exists(filePath))
-    {
-        return std::unexpected{std::format("Cannot load file: '{}'", filePath.string())};
-    }
-
-    auto pixels = stbi_load(std::string(path).data(), &width, &height, &nrComponents, 0);
-    
-    return pixels;
-}
-}
-}
+#if defined(_WIN32)
+    #define LINKY_PLATFORM_WINDOWS
+#elif defined(__APPLE__) && defined(__MACH__)
+    #define LINKY_PLATFORM_APPLE
+#elif defined(__linux__)
+    #define LINKY_PLATFORM_LINUX
+#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
+    #define LINKY_PLATFORM_BSD
+#elif defined(__sun)
+    #define LINKY_PLATFORM_SOLARIS
+#else
+    #error "Unknown platform"
+#endif

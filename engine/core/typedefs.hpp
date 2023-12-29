@@ -22,3 +22,4 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <bitset>
