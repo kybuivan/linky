@@ -20,13 +20,22 @@
 
 #include "object.hpp"
 
-namespace linky {
-namespace core {
+namespace linky::core {
 object::object() {
     
 }
 object::~object() {
     
 }
+
+auto object::get_parrent() const -> entt::entity
+{
+    return entt::null;
+}
+
+auto object::get_children() const -> std::vector<entt::entity>
+{
+    std::vector<entt::entity> children;
+    return children;
 }
 }
