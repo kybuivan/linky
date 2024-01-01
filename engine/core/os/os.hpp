@@ -19,9 +19,13 @@
 // SOFTWARE.
 
 #pragma once
+#include <core/templates/singleton.hpp>
 
 namespace linky::core {
-class os {
-
+class os : public singleton<os> {
+public:
+    os();
+    virtual ~os();
+private:
 };
 }
