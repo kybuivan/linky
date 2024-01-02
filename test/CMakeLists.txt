@@ -4,7 +4,7 @@ file(GLOB_RECURSE SOURCES
 
 include(catch)
 
-set(LIB_NAME linky)
+set(LIB_NAME core)
 set(TEST_NAME tests)
 
 add_executable(${TEST_NAME} ${SOURCES})

@@ -16,4 +16,20 @@ auto get_files_recursive(const std::string_view& dir_path) -> std::vector<std::f
 
     return files;
 }
+
+auto read_file(const std::string& path) -> std::string
+{
+    std::string str;
+    std::ifstream in(path, std::ios::binary);
+
+    if(in)
+    {
+        in.seekg(0, std::ios::end);
+        str.resize(in.tellg());
+        in.seekg(0, std::ios::beg);
+        in.read(&str[0], str.size());
+        in.close();
+    }
+    return str;
+}
 }

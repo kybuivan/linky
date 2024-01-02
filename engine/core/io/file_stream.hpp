@@ -30,4 +30,5 @@ namespace linky::core {
 
 auto get_files_recursive(const std::string_view& dir_path) -> std::vector<std::filesystem::path>;
 
+auto read_file(const std::string& path) -> std::string;
 }

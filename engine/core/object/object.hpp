@@ -54,6 +54,7 @@ public:
     virtual void add(object *component) {}
     virtual void remove(object *component) {}
 private:
+    std::unordered_map<std::string, variant> m_properties;
     entt::registry* m_registry;
     entt::entity m_entity;
     object_id m_object_id;

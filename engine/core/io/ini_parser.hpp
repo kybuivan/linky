@@ -19,9 +19,3 @@
 // SOFTWARE.
 
 #pragma once
-#include <thread>
-#include <mutex>
-
-namespace linky::core {
-
-}

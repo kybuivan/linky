@@ -22,67 +22,19 @@
 #include <magic_enum.hpp>
 
 namespace linky::core {
-variant::variant()
+auto variant::get_type() const -> type
 {
-    m_type = type_nil;
-}
-
-variant::variant(int i) {
-    m_type = type_int;
-    m_data = static_cast<std::int64_t>(i);
-}
-
-variant::variant(long i) {
-    m_type = type_int;
-    m_data = static_cast<std::int64_t>(i);
-}
-
-variant::variant(std::uint8_t i) {
-    m_type = type_int;
-    m_data = static_cast<std::int64_t>(i);
-}
-
-variant::variant(std::uint16_t i) {
-    m_type = type_int;
-    m_data = static_cast<std::int64_t>(i);
-}
-
-variant::variant(std::uint32_t i) {
-    m_type = type_int;
-    m_data = static_cast<std::int64_t>(i);
-}
-
-variant::variant(std::uint64_t i) {
-    m_type = type_int;
-    m_data = static_cast<std::int64_t>(i);
-}
-
-variant::variant(float d) {
-    m_type = type_double;
-    m_data = static_cast<double>(d);
-}
-
-variant::variant(double d) {
-    m_type = type_double;
-    m_data = static_cast<double>(d);
-}
-
-variant::variant(const std::string_view &s) {
-    m_type = type_string;
-    m_data = static_cast<std::string>(s);
-}
-
-variant::variant(bool b) {
-    m_type = type_bool;
-    m_data = static_cast<bool>(b);
-}
-
-auto variant::get_type() const -> type {
     return m_type;
 }
 
-auto variant::get_type_name() const -> std::string_view {
+auto variant::get_type_name() const -> std::string_view
+{
     return type_to_name(m_type);
+}
+
+auto variant::can_convert_to(type t) const -> bool
+{
+    return true;
 }
 
 auto variant::type_to_name(type t) -> std::string_view

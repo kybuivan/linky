@@ -22,7 +22,7 @@
 
 namespace linky::core {
 class noncopyable {
-public:
+protected:
     // Delete copy operations
     noncopyable(const noncopyable&) = delete;
     noncopyable& operator=(const noncopyable&) = delete;
@@ -30,7 +30,7 @@ public:
     // Delete move operations
     noncopyable(noncopyable&&) = delete;
     noncopyable& operator=(noncopyable&&) = delete;
-protected:
+
     noncopyable() = default;
     ~noncopyable() = default;
 };

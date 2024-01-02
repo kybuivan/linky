@@ -70,6 +70,6 @@ configure_file(
 )
 
 # Sub-projects
-add_subdirectory(engine)
-add_subdirectory(editor)
+add_subdirectory(engine/core)
+#add_subdirectory(editor)
 add_subdirectory(test)

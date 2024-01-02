@@ -19,32 +19,22 @@
 // SOFTWARE.
 
 #pragma once
-#include <mutex>
-#include <queue>
-#include <thread>
-#include <vector>
-#include <memory>
-#include <atomic>
-#include <future>
-#include <functional>
-#include <type_traits>
+#include <core/io/file_stream.hpp>
 
 namespace linky::core {
-class thread_pool {
+class config {
 public:
-    thread_pool(const thread_pool&) = delete;
-    thread_pool(thread_pool&&) noexcept = delete;
-    thread_pool& operator=(const thread_pool&) = delete;
-    thread_pool& operator=(thread_pool&&) noexcept = delete;
+    config(const char* path);
+    config(const std::filesystem::path path);
 
-    ~thread_pool();
+    void from_ini();
+    void from_json();
+    void from_lua();
+    void from_xml();
+    void load();
+    void save();
 private:
-    void worker();
-private:
-    std::atomic<bool> m_running = true;
-    std::condition_variable m_available;
-    mutable std::mutex m_mutex;
-    std::queue<std::function<void()>> m_tasks;
-    std::vector<std::thread> m_threads;
-};
+    std::string m_path;
+    std::unordered_map<std::string, std::vector<std::string>> m_settings;
+}
 }

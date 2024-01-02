@@ -4,18 +4,6 @@ file(GLOB_RECURSE src_files "${CMAKE_CURRENT_SOURCE_DIR}/*.hpp" "${CMAKE_CURRENT
 
 add_library(${project_name} STATIC ${src_files})
 
-include(glm)
-include(spdlog)
-include(stb)
-include(entt)
-include(magic_enum)
-include(eventpp)
-include(nlohmann_json)
-include(cereal)
-include(stduuid)
-include(lua)
-include(sol2)
-
 include(assimp)
 include(glad)
 include(glfw)
@@ -24,17 +12,7 @@ include(imguizmo)
 include(imnodes)
 
 target_link_libraries(${project_name} PUBLIC
-  external::glm
-  external::spdlog
-  external::stb
-  external::entt
-  external::magic_enum
-  external::eventpp
-  external::nlohmann_json
-  external::cereal
-  external::stduuid
-  external::lua
-  external::sol2
+  core
   external::glad
   external::assimp
   external::glfw

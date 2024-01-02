@@ -19,9 +19,13 @@
 // SOFTWARE.
 
 #pragma once
+#include <core/io/file_stream.hpp>
 
 namespace linky::core {
-class serializable {
-
-};
+template<typename ...Args>
+inline std::string serialize(Args &&...args) noexcept {
+    std::ostringstream ss;
+    static_cast<void>((ss << ... << std::forward<Args>(args)));
+    return ss.str();
+}
 }
