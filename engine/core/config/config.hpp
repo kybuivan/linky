@@ -36,5 +36,5 @@ public:
 private:
     std::string m_path;
     std::unordered_map<std::string, std::vector<std::string>> m_settings;
-}
+};
 }

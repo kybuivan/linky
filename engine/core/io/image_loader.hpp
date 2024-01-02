@@ -23,12 +23,10 @@
 #include <core/string/string.hpp>
 #include <core/io/image.hpp>
 
-namespace linky {
-namespace core {
+namespace linky::core {
 class image_loader {
 public:
     
     static auto load_stb_image(const std::string_view& path, int& width, int& height, int& nrComponents) -> std::expected<unsigned char*, std::string>;
 };
-}
 }

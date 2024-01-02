@@ -20,6 +20,5 @@
 
 #include "math.hpp"
 
-namespace linky
-{
+namespace linky::core {
 }

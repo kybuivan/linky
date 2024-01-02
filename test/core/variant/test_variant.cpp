@@ -4,6 +4,8 @@
 namespace linky::core {
 TEST_CASE("[variant] type") {
     variant var_bool(true);
+    //REQUIRE(true == var_bool);
+
     variant var_int(4);
     variant var_float(0.4f);
     variant var_double(1.4);

@@ -23,8 +23,7 @@
 #include <format>
 #include <stb_image.h>
 
-namespace linky {
-namespace core {
+namespace linky::core {
 namespace fs = std::filesystem;
 
 auto image_loader::load_stb_image(const std::string_view& path, int& width, int& height, int& nrComponents) -> std::expected<unsigned char*, std::string> {
@@ -39,6 +38,5 @@ auto image_loader::load_stb_image(const std::string_view& path, int& width, int&
     auto pixels = stbi_load(std::string(path).data(), &width, &height, &nrComponents, 0);
     
     return pixels;
-}
 }
 }

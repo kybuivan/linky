@@ -24,7 +24,33 @@ namespace linky::core {
 project_settings::project_settings() {
     
 }
+
 project_settings::~project_settings() {
     
+}
+
+auto project_settings::get_name() const -> std::string
+{
+    return m_name;
+}
+
+auto project_settings::get_path() const -> std::string
+{
+    return m_path;
+}
+
+auto project_settings::get_window_size() const -> vec2
+{
+    return m_window_size;
+}
+
+auto project_settings::get_window_title() const -> std::string
+{
+    return m_window_title;
+}
+
+auto project_settings::is_fullscreen() const -> bool
+{
+    return m_fullscreen;
 }
 }

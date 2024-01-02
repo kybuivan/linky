@@ -21,12 +21,10 @@
 #pragma once
 #include <iostream>
 #include <core/object/object_id.hpp>
-#include <core/templates/ref.hpp>
 #include <core/variant/variant.hpp>
 #include <entt/entity/registry.hpp>
 
-namespace linky {
-namespace core {
+namespace linky::core {
 struct property_info {
     variant::type type = variant::type_nil;
     std::string name;
@@ -60,5 +58,4 @@ private:
     object_id m_object_id;
     object *m_parrent;
 };
-}
 }

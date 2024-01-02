@@ -20,12 +20,10 @@
 
 #pragma once
 
-namespace linky {
-namespace core {
+namespace linky::core {
 enum class error {
     ok,
     failed,
     err_max
 };
-}
 }

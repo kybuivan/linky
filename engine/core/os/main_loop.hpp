@@ -19,15 +19,19 @@
 // SOFTWARE.
 
 #pragma once
-#include <core/typedefs.hpp>
 
 namespace linky::core {
-class object_id {
+class main_loop {
 public:
-    object_id();
+    virtual void initialize();
+    virtual bool process(double time);
+    virtual void finalize();
 
-    std::uint64_t operator()() const { return m_id; }
-private:
-    std::uint64_t m_id = 0;
+    main_loop() {}
+    virtual ~main_loop() {}
+protected:
+    virtual void _initialize();
+    virtual bool _process(double time);
+    virtual void _finalize();
 };
 }

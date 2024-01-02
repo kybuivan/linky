@@ -22,15 +22,9 @@
 #include "core/version.hpp"
 
 namespace linky::core {
-auto engine::get_version_info() const -> version_info
+engine::engine()
 {
-    version_info ver;
-    ver.major = LINKY_MAJOR_VERSION;
-    ver.minor = LINKY_MINOR_VERSION;
-    ver.patch = LINKY_PATCH_VERSION;
-    ver.commit = LINKY_COMMIT_HASH;
-    std::cout << ver.commit << std::endl;
-    return ver;
+    m_version = LINKY_VERSION;
 }
 
 auto engine::get_version() const -> std::string

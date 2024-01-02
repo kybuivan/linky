@@ -23,17 +23,23 @@
 #include <core/io/file_stream.hpp>
 #include <core/object/object.hpp>
 
-namespace linky {
-namespace core {
+namespace linky::core {
 
 class project_settings : public object {
 public:
     project_settings();
     ~project_settings();
-    
+
+    auto get_name() const -> std::string;
+    auto get_path() const -> std::string;
+    auto get_window_size() const -> vec2;
+    auto get_window_title() const -> std::string;
+    auto is_fullscreen() const -> bool;
 private:
     std::string m_name;
     std::string m_path;
+    bool m_fullscreen;
+    vec2 m_window_size;
+    std::string m_window_title;
 };
-}
 }
