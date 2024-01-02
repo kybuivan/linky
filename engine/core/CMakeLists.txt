@@ -12,6 +12,7 @@ include(cereal)
 include(stduuid)
 include(lua)
 include(sol2)
+include(gsl)
 
 target_link_libraries(core PUBLIC
   external::glm
@@ -25,6 +26,7 @@ target_link_libraries(core PUBLIC
   external::stduuid
   external::lua
   external::sol2
+  external::gsl
 )
 
 # Include directories

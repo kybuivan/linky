@@ -4,9 +4,9 @@
 
 namespace linky::core {
 TEST_CASE ("[engine] version info") {
-    engine e = engine();
-    //engine e1 = e;
-    //engine e1(e);
+    engine e = engine(); // OK
+    //engine e2 = e; // ERROR
+    //engine e3(e); // ERROR
     engine& e1 = engine::get();
     REQUIRE(e1.get_version() == LINKY_VERSION);
 }

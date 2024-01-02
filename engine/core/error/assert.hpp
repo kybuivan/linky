@@ -19,6 +19,7 @@
 // SOFTWARE.
 
 #pragma once
+#include <gsl/assert> // for Ensures, Expects
 
 namespace linky::core {
     

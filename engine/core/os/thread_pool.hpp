@@ -22,29 +22,37 @@
 #include <mutex>
 #include <queue>
 #include <thread>
-#include <vector>
+#include <list>
 #include <memory>
 #include <atomic>
 #include <future>
 #include <functional>
 #include <type_traits>
+#include <core/templates/noncopyable.hpp>
+#include <core/error/assert.hpp>
 
 namespace linky::core {
-class thread_pool {
+using task = std::function<void()>;
+class thread_pool : public noncopyable {
 public:
-    thread_pool(const thread_pool&) = delete;
-    thread_pool(thread_pool&&) noexcept = delete;
-    thread_pool& operator=(const thread_pool&) = delete;
-    thread_pool& operator=(thread_pool&&) noexcept = delete;
-
+    thread_pool(size_t num = std::thread::hardware_concurrency());
+    
     ~thread_pool();
+
+    void stop();
+    void add(const task& t);
+    void add(task&& t);
 private:
-    void worker();
+    void start(size_t num);
+    void stop_imp();
+    void run_in_thread();
+
 private:
+    std::once_flag m_once;
     std::atomic<bool> m_running = true;
     std::condition_variable m_available;
     mutable std::mutex m_mutex;
-    std::queue<std::function<void()>> m_tasks;
-    std::vector<std::thread> m_threads;
+    std::list<task> m_tasks;
+    std::list<std::shared_ptr<std::thread>> m_threads;
 };
 }
