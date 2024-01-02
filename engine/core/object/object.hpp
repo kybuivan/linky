@@ -23,6 +23,7 @@
 #include <core/object/object_id.hpp>
 #include <core/variant/variant.hpp>
 #include <entt/entity/registry.hpp>
+#include <rfl.hpp>
 
 namespace linky::core {
 struct property_info {

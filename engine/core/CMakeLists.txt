@@ -7,12 +7,13 @@ include(stb)
 include(entt)
 include(magic_enum)
 include(eventpp)
-include(nlohmann_json)
-include(cereal)
+#include(nlohmann_json)
+#include(cereal)
 include(stduuid)
 include(lua)
 include(sol2)
 include(gsl)
+include(reflectcpp)
 
 target_link_libraries(core PUBLIC
   external::glm
@@ -21,12 +22,13 @@ target_link_libraries(core PUBLIC
   external::entt
   external::magic_enum
   external::eventpp
-  external::nlohmann_json
-  external::cereal
+  #external::nlohmann_json
+  #external::cereal
   external::stduuid
   external::lua
   external::sol2
   external::gsl
+  external::reflectcpp
 )
 
 # Include directories

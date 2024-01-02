@@ -28,9 +28,6 @@
 #include <core/variant/event.hpp>
 #include <core/variant/callable.hpp>
 #include <core/math/math.hpp>
-#include <cereal/types/unordered_map.hpp>
-#include <cereal/types/memory.hpp>
-#include <cereal/archives/binary.hpp>
 
 namespace linky::core {
 struct property_info;
