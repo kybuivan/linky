@@ -20,7 +20,6 @@
 
 #pragma once
 #include <exception>
-#include <core/templates/singleton.hpp>
 #include <core/io/serializable.hpp>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/spdlog.h>
@@ -95,7 +94,7 @@ inline void error_if_not(bool predicate, Args &&... args) {
 
 #define LINKY_DEBUG(...) \
     ::linky::core::io::debug(__VA_ARGS__);
-    
+
 #define LINKY_SET_LOG_LEVEL(lv) \
     ::linky::core::io::set_log_level(spdlog::level::level_enum::lv);
 

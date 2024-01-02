@@ -20,11 +20,10 @@
 
 #pragma once
 #include <core/object/object.hpp>
-#include <core/templates/singleton.hpp>
 #include <core/templates/noncopyable.hpp>
 
 namespace linky::core {
-class engine : public object, public singleton<engine>
+class engine : public object, public noncopyable
 {
 public:
     engine();
@@ -34,8 +33,6 @@ public:
     auto get_license() const -> std::string;
     auto get_author() const -> std::vector<std::string>;
 private:
-    friend singleton;
-
     double m_fps = 1;
     std::string m_version { "1.0" };
     std::vector<std::string> m_author;
