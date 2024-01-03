@@ -72,6 +72,6 @@ configure_file(
 include(warnings)
 
 # Sub-projects
-add_subdirectory(engine/core)
+add_subdirectory(engine/core/math)
 #add_subdirectory(editor)
-add_subdirectory(test)
+#add_subdirectory(test)

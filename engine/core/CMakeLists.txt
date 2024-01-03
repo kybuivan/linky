@@ -1,22 +1,6 @@
+#add_subdirectory(templates)
 add_library(core)
 set_warnings_as_errors(core)
-
-# We include the GL loader ourselfs
-target_compile_definitions(core PUBLIC
-  GLFW_INCLUDE_NONE
-  SPDLOG_ACTIVE_LEVEL=0)
-
-# Make the MSVC compilers preprocessor more standard like
-if ((MSVC))
-  target_compile_options(core PUBLIC "/Zc:preprocessor")
-endif()
-
-if(NOT CMAKE_BUILD_TYPE MATCHES RELEASE)
-  target_compile_definitions(core PUBLIC LINKY_ENABLE_ASSERT)
-  # target_compile_definitions(core PUBLIC LINKY_ENABLE_PROFILING)
-  target_compile_definitions(core PUBLIC LINKY_ENABLE_TIMING)
-endif()
-
 
 # Include directories
 target_include_directories(core PUBLIC

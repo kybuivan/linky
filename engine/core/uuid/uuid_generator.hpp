@@ -19,7 +19,6 @@
 // SOFTWARE.
 
 #pragma once
-#include <memory>
 #include <uuid.h>
 
 namespace linky::core {
