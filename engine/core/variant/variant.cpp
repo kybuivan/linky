@@ -49,7 +49,7 @@ auto variant::name_to_type(std::string_view type_name) -> type
         return t.value();
     }
     else {
-        return type::type_nil;
+        return type::e_nil;
     }
 }
 } //namespace linky::core

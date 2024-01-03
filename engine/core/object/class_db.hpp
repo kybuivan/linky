@@ -19,45 +19,7 @@
 // SOFTWARE.
 
 #pragma once
-#include <iostream>
-#include <core/object/object_id.hpp>
-#include <core/variant/variant.hpp>
-#include <entt/entity/registry.hpp>
 
 namespace linky::core {
-struct property_info {
-    variant::type type = variant::type::e_nil;
-    std::string name;
-    dictionary data;
-
-    property_info() {}
-    property_info(const variant::type _type, const std::string _name)
-        : type(_type)
-        , name(_name)
-    {}
-};
-
-#define ADD_PROPERTY(m_property, m_setter, m_getter)
-
-class object {
-public:
-    object();
-    virtual ~object();
-
-    void render() { std::cout << "object ID:" << m_object_id() << " is render\n";}
-    object_id get_instance_id() const { return m_object_id; }
-    void set_parrent(object * parrent) { m_parrent = parrent; }
-
-    auto get_parrent() const -> entt::entity;
-    auto get_children() const -> std::vector<entt::entity>;
-
-    virtual void add(object *component) {}
-    virtual void remove(object *component) {}
-private:
-    std::unordered_map<std::string, variant> m_properties;
-    entt::registry* m_registry;
-    entt::entity m_entity;
-    object_id m_object_id;
-    object *m_parrent;
-};
+    
 }

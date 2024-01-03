@@ -20,7 +20,26 @@
 
 #pragma once
 #include <gsl/assert> // for Ensures, Expects
+#include <format>
 
-namespace linky::core {
-    
-}
+#if defined(LINKY_ENABLE_ASSERT)
+
+#define LINKY_ABORT() std::abort()
+
+#define LINKY_DO_ASSERT(file, line, expr, msg, ...)
+  
+#define LINKY_ASSERT(expr, msg, ...)                                              \
+  LINKY_DO_ASSERT(__FILE__, __LINE__, expr, msg, ##__VA_ARGS__)
+
+#define LINKY_DO_FAIL(file, line, msg, ...)
+
+#define LINKY_FAIL(msg, ...) LINKY_DO_FAIL(__FILE__, __LINE__, msg, ##__VA_ARGS__)
+
+#else
+
+#define LINKY_DO_ASSERT(file, line, expr, msg) (void)0
+#define LINKY_ASSERT(expr, msg)                (void)0
+#define LINKY_DO_FAIL(file, line, msg)         (void)0
+#define LINKY_FAIL(msg)                        (void)0
+
+#endif

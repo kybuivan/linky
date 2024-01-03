@@ -28,6 +28,7 @@
 #include <core/variant/event.hpp>
 #include <core/variant/callable.hpp>
 #include <core/math/math.hpp>
+#include <entt/entity/registry.hpp>
 
 namespace linky::core {
 struct property_info;
@@ -57,17 +58,17 @@ public:
 
     using internal_variant_type = helpers::variant_type;
 
-    enum type {
-        type_nil,
+    enum class type : entt::id_type {
+        e_nil,
 
-        type_bool,
-        type_int,
-        type_double,
-        type_string,
+        e_bool,
+        e_int,
+        e_double,
+        e_string,
 
-        type_dictionary,
+        e_dictionary,
 
-        type_max,
+        e_max,
     };
     
     variant() = default;
@@ -163,6 +164,6 @@ public:
     void get_property_list(std::list<property_info> *list) {}
 private:
     internal_variant_type m_data;
-    type m_type = type_nil;
+    type m_type = type::e_nil;
 };
 }

@@ -41,7 +41,7 @@ set(CMAKE_CONFIGURATION_TYPES "Debug;Release;Distribution")
 set(CMAKE_CXX_FLAGS_DISTRIBUTION "/GS- /Gy /O2 /Oi /Ot")
 set(CMAKE_EXE_LINKER_FLAGS_DISTRIBUTION "${CMAKE_EXE_LINKER_FLAGS_RELEASE}")
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/external)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_CURRENT_SOURCE_DIR}/cmake/external)
 
 if(${PROJECT_NAME}_USE_ALT_NAMES)
   string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWERCASE)
@@ -68,6 +68,8 @@ configure_file(
     ${PROJECT_BINARY_DIR}/include/core/version.hpp
     @ONLY
 )
+
+include(warnings)
 
 # Sub-projects
 add_subdirectory(engine/core)
