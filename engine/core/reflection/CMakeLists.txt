@@ -1,15 +1,27 @@
-file(GLOB_RECURSE libsrc *.h *.cpp *.hpp *.c *.cc)
+cmake_minimum_required(VERSION 3.26.0 FATAL_ERROR)
 
 set(target_name reflection)
+project(${target_name} LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
+file(GLOB_RECURSE libsrc src/*.cpp src/*.c src/*.cc)
 
 add_library(${target_name} STATIC ${libsrc})
 
+include(magic_enum)
 include(rttr)
-target_link_libraries(${target_name} PUBLIC external::rttr)
+target_link_libraries(${target_name} PUBLIC
+    external::rttr
+    external::magic_enum
+)
 
-target_include_directories(${target_name}
-    INTERFACE
-		${CMAKE_CURRENT_SOURCE_DIR}/../..
+target_include_directories(${target_name} PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 target_precompile_headers(${target_name}
@@ -17,15 +29,15 @@ target_precompile_headers(${target_name}
     <string>
 )
 
-set (target_for_ide "${target_name}_ide")
-if (NOT TARGET ${target_for_ide})
-    add_custom_target(${target_for_ide} SOURCES ${libsrc})
-endif()
+# enable testing functionality
+enable_testing()
 
-set_target_properties(${target_name} PROPERTIES
-   CXX_STANDARD 23
-   CXX_STANDARD_REQUIRED YES
-   CXX_EXTENSIONS NO
-   POSITION_INDEPENDENT_CODE ON
-   WINDOWS_EXPORT_ALL_SYMBOLS ON
+# testing binary
+add_executable(${target_name}_test test/test.cpp)
+target_link_libraries(${target_name}_test PRIVATE ${target_name})
+
+# define tests
+add_test(
+  NAME ${target_name}_test
+  COMMAND $<TARGET_FILE:${target_name}_test>
 )
