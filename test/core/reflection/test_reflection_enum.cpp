@@ -1,7 +1,7 @@
-#include "reflection_enum.hpp"
+#include <core/reflection/reflection_enum.hpp>
 #include <iostream>
 
-using namespace lk::reflection;
+using namespace linky::reflection;
 enum class Num : int32_t
 {
     ONE,

@@ -4,7 +4,7 @@
 #include <bitset>
 #include <magic_enum.hpp>
 
-namespace lk::reflection {
+namespace linky::reflection {
 template <typename Enum, typename = std::enable_if_t<std::is_enum_v<Enum>>>
 [[nodiscard]] constexpr auto enum_to_string(Enum value) -> std::string_view
 {

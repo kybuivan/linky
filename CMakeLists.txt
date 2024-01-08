@@ -1,77 +1,76 @@
 cmake_minimum_required(VERSION 3.26.0 FATAL_ERROR)
 
-project(
-    "linky"
-    VERSION 0.1.0
+file(STRINGS "version.txt" LINKY_VERSION)
+
+project(Linky
+    VERSION ${LINKY_VERSION}
+    DESCRIPTION "A high performance focused game engine using object oriented techniques based in the latest C++"
     LANGUAGES CXX
 )
 
-if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
-  message(
-    FATAL_ERROR
-    "In-source builds not allowed. Please make a new directory (called a build directory) and run CMake from there.\n"
-  )
-endif()
+set(CMAKE_POLICY_DEFAULT_CMP0076 NEW)
+set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
+cmake_policy(SET CMP0076 NEW)
+cmake_policy(SET CMP0077 NEW)
+cmake_policy(SET CMP0127 NEW)
 
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG")
+# Standard CMake Includes
+include(CTest)
+include(FetchContent)
+include(GNUInstallDirs)
+include(CMakeDependentOption)
+include(CMakePackageConfigHelpers)
+
+option(LINKY_USE_ALT_NAMES "Use alternative names for the project, such as naming the include directory all lowercase." ON)
+option(LINKY_GENERATE_EXPORT_HEADER "Create a `project_export.h` file containing all exported symbols." OFF)
+cmake_dependent_option(LINKY_CODE_COVERAGE "Enable code coverage" ON "\"${CMAKE_CXX_COMPILER_ID}\" STREQUAL \"Clang\" OR \"${CMAKE_CXX_COMPILER_ID}\" STREQUAL \"GNU\"" OFF)
+cmake_dependent_option(LINKY_INCLUDE_NATVIS "Enable inclusion of a natvis files for debugging" ON "\"${CMAKE_CXX_COMPILER_ID}\" STREQUAL \"MSVC\"" OFF)
 
 set(BUILD_SHARED_LIBS OFF)
 
-option(${PROJECT_NAME}_USE_ALT_NAMES "Use alternative names for the project, such as naming the include directory all lowercase." ON)
-option(${PROJECT_NAME}_GENERATE_EXPORT_HEADER "Create a `project_export.h` file containing all exported symbols." OFF)
+list(APPEND CMAKE_MODULE_PATH
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/external
+)
 
-set(CMAKE_VS_PLATFORM_NAME "x64")
+include(compiler)
+enable_testing()
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "$<1:${CMAKE_BINARY_DIR}/lib>") # .lib, .a
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "$<1:${CMAKE_BINARY_DIR}/lib>") # .dll, .so
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "$<1:${CMAKE_BINARY_DIR}/bin>") # .exe
+# Offer the user the choice of overriding the installation directories
+set(INSTALL_LIBDIR ${CMAKE_INSTALL_LIBDIR} CACHE PATH "Installation directory for libraries")
+set(INSTALL_BINDIR ${CMAKE_INSTALL_BINDIR} CACHE PATH "Installation directory for executables")
+set(INSTALL_INCLUDEDIR ${CMAKE_INSTALL_INCLUDEDIR} CACHE PATH "Installation directory for header files")
 
-if(WIN32)
-  message(STATUS "Build for WIN32")
-  add_definitions(-DNOMINMAX)
-elseif(LINUX)
-  message(STATUS "Build for Linux")
-endif()
-
-set(CMAKE_CONFIGURATION_TYPES "Debug;Release;Distribution")
-
-set(CMAKE_CXX_FLAGS_DISTRIBUTION "/GS- /Gy /O2 /Oi /Ot")
-set(CMAKE_EXE_LINKER_FLAGS_DISTRIBUTION "${CMAKE_EXE_LINKER_FLAGS_RELEASE}")
-
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_CURRENT_SOURCE_DIR}/cmake/external)
-
-if(${PROJECT_NAME}_USE_ALT_NAMES)
-  string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWERCASE)
-  string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPERCASE)
+# Build the RPath relative to the executable locations (i.e. from the bin directory, up back to the install root and in to the lib folder.
+file(RELATIVE_PATH LINKY_INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/${INSTALL_BINDIR} ${CMAKE_INSTALL_PREFIX})
+if (APPLE)
+    set(LINKY_INSTALL_RPATH "@executable_path/${LINKY_INSTALL_RPATH}")
 else()
-  set(PROJECT_NAME_LOWERCASE ${PROJECT_NAME})
-  set(PROJECT_NAME_UPPERCASE ${PROJECT_NAME})
+    set(LINKY_INSTALL_RPATH "$ORIGIN/${LINKY_INSTALL_RPATH}")
 endif()
+file(TO_NATIVE_PATH "${LINKY_INSTALL_RPATH}/${INSTALL_LIBDIR}" LINKY_INSTALL_RPATH )
 
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+set(CMAKE_INSTALL_RPATH ${LINKY_INSTALL_RPATH})
+set(CMAKE_MACOSX_RPATH 1)
+set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
+set(CMAKE_SKIP_BUILD_RPATH  FALSE)
 
-# Get Git commit hash
-execute_process(
-    COMMAND git rev-parse --short HEAD
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    OUTPUT_VARIABLE GIT_COMMIT_HASH
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-)
+get_property(IS_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
+if(IS_MULTI_CONFIG)
+    set(RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/$<CONFIG>)
+    set(LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib/$<CONFIG>)
+    file(RELATIVE_PATH LINKY_RELATIVE_BUILD_RPATH ${RUNTIME_OUTPUT_DIRECTORY} ${LIBRARY_OUTPUT_DIRECTORY})
+    if (APPLE)
+        set(LINKY_BUILD_RPATH "@executable_path/${LINKY_RELATIVE_BUILD_RPATH}")
+    else()
+        set(LINKY_BUILD_RPATH "$ORIGIN/${LINKY_RELATIVE_BUILD_RPATH}")
+    endif()
 
-message("Git Commit Hash: ${GIT_COMMIT_HASH}")
-
-configure_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/version.hpp.in
-    ${PROJECT_BINARY_DIR}/include/core/version.hpp
-    @ONLY
-)
-
-include(warnings)
+    set(CMAKE_BUILD_RPATH ${LINKY_BUILD_RPATH})
+    set(CMAKE_BUILD_WITH_INSTALL_RPATH OFF)
+endif()
 
 # Sub-projects
-add_subdirectory(engine/core/math)
+add_subdirectory(engine)
 #add_subdirectory(editor)
-#add_subdirectory(test)
+add_subdirectory(test)

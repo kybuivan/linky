@@ -1,43 +1,16 @@
-cmake_minimum_required(VERSION 3.26.0 FATAL_ERROR)
-
-set(target_name reflection)
-project(${target_name} LANGUAGES CXX)
-
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_EXTENSIONS OFF)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-
-file(GLOB_RECURSE libsrc src/*.cpp src/*.c src/*.cc)
-
-add_library(${target_name} STATIC ${libsrc})
-
-include(magic_enum)
 include(rttr)
-target_link_libraries(${target_name} PUBLIC
-    external::rttr
-    external::magic_enum
+include(magic_enum)
+target_link_libraries(linky_core
+    PUBLIC
+        external::rttr
+        external::magic_enum
 )
 
-target_include_directories(${target_name} PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-
-target_precompile_headers(${target_name}
-    INTERFACE
-    <string>
-)
-
-# enable testing functionality
-enable_testing()
-
-# testing binary
-add_executable(${target_name}_test test/test.cpp)
-target_link_libraries(${target_name}_test PRIVATE ${target_name})
-
-# define tests
-add_test(
-  NAME ${target_name}_test
-  COMMAND $<TARGET_FILE:${target_name}_test>
+target_sources(linky_core
+    PUBLIC
+        reflection_enum.hpp
+        reflection.h
+        registration.h
+    PRIVATE
+        reflection.cpp
 )
