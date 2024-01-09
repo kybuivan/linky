@@ -1,6 +1,6 @@
 include(concurrentqueue)
 target_link_libraries(linky_core
-    PUBLIC
+    PRIVATE
         external::concurrentqueue
 )
 

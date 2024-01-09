@@ -10,7 +10,7 @@
 #endif
 #endif
 
-namespace linky {
+namespace linky::debug {
 void SetProfilerThreadName(const char* name)
 {
 #if LINKY_PROFILING

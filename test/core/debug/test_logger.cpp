@@ -1,5 +1,5 @@
 #include <catch2/catch_test_macros.hpp>
-#include <core/io/logger.hpp>
+#include <core/debug/logger.hpp>
 
 TEST_CASE("[logger]")
 {

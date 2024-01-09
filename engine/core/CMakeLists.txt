@@ -22,12 +22,15 @@ target_link_libraries(linky_core PUBLIC
     linky::config
 )
 
-add_subdirectory(math)
-add_subdirectory(parser)
-add_subdirectory(profiler)
-add_subdirectory(reflection)
-add_subdirectory(serialization)
-add_subdirectory(concurrency)
+add_subdirectory("ecs")
+add_subdirectory("string")
+add_subdirectory("file")
+add_subdirectory("math")
+add_subdirectory("parser")
+add_subdirectory("debug")
+add_subdirectory("reflection")
+add_subdirectory("serialization")
+add_subdirectory("concurrency")
 
 target_compile_features(linky_core PUBLIC cxx_std_23)
 target_compile_options(linky_core

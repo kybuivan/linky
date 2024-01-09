@@ -20,11 +20,17 @@
 
 #pragma once
 #include <exception>
-#include <core/io/serializable.hpp>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/spdlog.h>
 
-namespace linky::core::io {
+namespace linky::debug {
+
+template<typename ...Args>
+inline std::string serialize(Args &&...args) noexcept {
+    std::ostringstream ss;
+    static_cast<void>((ss << ... << std::forward<Args>(args)));
+    return ss.str();
+}
 
 spdlog::logger &logger() noexcept;
 
@@ -93,31 +99,31 @@ inline void error_if_not(bool predicate, Args &&... args) {
 #define LINKY_SOURCE_LOCATION __FILE__ , ":", __LINE__
 
 #define LINKY_DEBUG(...) \
-    ::linky::core::io::debug(__VA_ARGS__);
+    ::linky::debug::debug(__VA_ARGS__);
 
 #define LINKY_SET_LOG_LEVEL(lv) \
-    ::linky::core::io::set_log_level(spdlog::level::level_enum::lv);
+    ::linky::debug::set_log_level(spdlog::level::level_enum::lv);
 
 #define LINKY_INFO(...) \
-    ::linky::core::io::info(__VA_ARGS__);
+    ::linky::debug::info(__VA_ARGS__);
 
 #define LINKY_WARNING(...) \
-    ::linky::core::io::warning(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
+    ::linky::debug::warning(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
 #define LINKY_WARNING_IF(...) \
-    ::linky::core::io::warning_if(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
+    ::linky::debug::warning_if(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
 #define LINKY_WARNING_IF_NOT(...) \
-    ::linky::core::io::warning_if_not(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
+    ::linky::debug::warning_if_not(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
 
 #define LINKY_EXCEPTION(...) \
-    ::linky::core::io::exception(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
+    ::linky::debug::exception(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
 #define LINKY_EXCEPTION_IF(...) \
-    ::linky::core::io::exception_if(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
+    ::linky::debug::exception_if(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
 #define LINKY_EXCEPTION_IF_NOT(...) \
-    ::linky::core::io::exception_if_not(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
+    ::linky::debug::exception_if_not(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
 
 #define LINKY_ERROR(...) \
-    ::linky::core::io::error(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
+    ::linky::debug::error(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
 #define LINKY_ERROR_IF(...) \
-    ::linky::core::io::error_if(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
+    ::linky::debug::error_if(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
 #define LINKY_ERROR_IF_NOT(...) \
-    ::linky::core::io::error_if_not(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);
+    ::linky::debug::error_if_not(__VA_ARGS__, "\n    Source: ", LINKY_SOURCE_LOCATION);

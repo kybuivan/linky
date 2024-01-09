@@ -18,9 +18,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#pragma once
-#include <nlohmann/json.hpp>
+#include "logger.hpp"
 
-namespace linky::core {
-    
+namespace linky::debug {
+spdlog::logger &logger() noexcept {
+    static auto ret = spdlog::stdout_color_mt("console");
+    return *ret;
+}
 }

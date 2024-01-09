@@ -1,5 +1,5 @@
 #include <catch2/catch_test_macros.hpp>
-#include <core/profiler/profiler.hpp>
+#include <core/debug/profiler.hpp>
 
 int add(int a, int b)
 {

@@ -1,4 +1,4 @@
-# Profiler
+# Debug
 
 ## repo
 -[tracy](https://github.com/wolfpld/tracy) : Frame profiler
@@ -6,3 +6,4 @@
 -[bloaty](https://github.com/google/bloaty) : Bloaty: a size profiler for binaries
 -[orbit](https://github.com/google/orbit) : C/C++ Performance Profiler
 -[easy_profiler](https://github.com/yse/easy_profiler) : Lightweight profiler library for c++
+-[spdlog](https://github.com/gabime/spdlog) : Fast C++ logging library.

@@ -6,14 +6,14 @@ target_sources(linky_core_tests
         test_version.cpp
 )
 
-#add_subdirectory(base)
-#add_subdirectory(conformance)
-add_subdirectory(concurrency)
-add_subdirectory(profiler)
-add_subdirectory(math)
-add_subdirectory(parser)
-add_subdirectory(reflection)
-add_subdirectory(serialization)
+add_subdirectory("string")
+add_subdirectory("file")
+add_subdirectory("concurrency")
+add_subdirectory("debug")
+add_subdirectory("math")
+add_subdirectory("parser")
+add_subdirectory("reflection")
+add_subdirectory("serialization")
 
 get_target_property(SOURCES_FILES linky_core_tests SOURCES)
 source_group(TREE ${CMAKE_CURRENT_LIST_DIR} FILES ${SOURCES_FILES})

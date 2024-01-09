@@ -1,6 +1,6 @@
 #include "file_stream.hpp"
 
-namespace linky::core {
+namespace linky::file {
 namespace fs = std::filesystem;
 
 auto get_files_recursive(const std::string_view& dir_path) -> std::vector<std::filesystem::path>

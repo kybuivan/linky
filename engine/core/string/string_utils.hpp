@@ -18,11 +18,32 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "logger.hpp"
+#pragma once
+#include <string>
+#include <string_view>
+#include <locale>
+#include <codecvt>
+#include <regex>
 
-namespace linky::core::io {
-spdlog::logger &logger() noexcept {
-    static auto ret = spdlog::stdout_color_mt("console");
-    return *ret;
+namespace linky::string {
+
+inline auto str_to_wstr(const std::string_view& str) -> std::wstring
+{
+    std::wstring_convert<std::codecvt_utf8<wchar_t>> convert;
+    return convert.from_bytes(std::string(str));
+}
+
+inline auto to_upper_case(const std::string_view& str) -> std::string
+{
+    std::string result(str);
+    std::transform(str.begin(), str.end(), result.begin(), [](const auto& c) { return std::toupper(c); });
+    return result;
+}
+
+inline auto to_lower_case(const std::string_view& str) -> std::string
+{
+    std::string result(str);
+    std::transform(str.begin(), str.end(), result.begin(), [](const auto& c) { return std::tolower(c); });
+    return result;
 }
 }

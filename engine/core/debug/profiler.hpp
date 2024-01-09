@@ -31,7 +31,7 @@
 #include <tracy/public/client/TracyLock.hpp>
 #endif
 
-namespace linky {
+namespace linky::debug {
 
 static const unsigned PROFILER_COLOR_EVENTS = 0xb26d19;
 static const unsigned PROFILER_COLOR_RESOURCES = 0x006b82;
@@ -43,7 +43,7 @@ void SetProfilerThreadName(const char* name);
 #define LINKY_PROFILE_FUNCTION()                   ZoneScopedN(__FUNCTION__)
 #define LINKY_PROFILE_C(name, color)               ZoneScopedNC(name, color)
 #define LINKY_PROFILE(name)                        ZoneScopedN(name)
-#define LINKY_PROFILE_THREAD(name)                 linky::SetProfilerThreadName(name)
+#define LINKY_PROFILE_THREAD(name)                 linky::debug::SetProfilerThreadName(name)
 #define LINKY_PROFILE_VALUE(name, value)           TracyPlot(name, value)
 #define LINKY_PROFILE_FRAME()                      FrameMark
 #define LINKY_PROFILE_MESSAGE(txt, len)            TracyMessage(txt, len)
