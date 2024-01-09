@@ -1,6 +1,5 @@
-#include "serialization.h"
+#include <catch2/catch_test_macros.hpp>
+#include "core/serialization/serialization.h"
 
-int main()
-{
-    return 0;
+TEST_CASE("[serialization]") {
 }

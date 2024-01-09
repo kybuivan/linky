@@ -22,7 +22,10 @@ target_link_libraries(linky_core PUBLIC
     linky::config
 )
 
+add_subdirectory(math)
+add_subdirectory(parser)
 add_subdirectory(reflection)
+add_subdirectory(serialization)
 
 target_compile_features(linky_core PUBLIC cxx_std_23)
 target_compile_options(linky_core

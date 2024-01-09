@@ -9,7 +9,7 @@ template <typename Enum, typename = std::enable_if_t<std::is_enum_v<Enum>>>
 [[nodiscard]] constexpr auto enum_to_string(Enum value) -> std::string_view
 {
     auto str = magic_enum::enum_name(value);
-    return std::string(str);
+    return str;
 }
 
 template <typename E>

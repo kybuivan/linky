@@ -1,22 +1,16 @@
-set(target_name math)
-
-file(GLOB_RECURSE libsrc *.h *.cpp *.hpp *.c *.cc)
-
-add_library(${target_name} ${libsrc})
-
-target_include_directories(${target_name}
+include(glm)
+target_link_libraries(linky_core
     PUBLIC
-		${CMAKE_CURRENT_SOURCE_DIR}/../..
+        external::glm
 )
 
-include(glm)
-target_link_libraries(${target_name} PUBLIC external::glm)
-
-
-set_target_properties(${target_name} PROPERTIES
-    CXX_STANDARD 20
-    CXX_STANDARD_REQUIRED YES
-    CXX_EXTENSIONS NO
-    POSITION_INDEPENDENT_CODE ON
-    WINDOWS_EXPORT_ALL_SYMBOLS ON
+target_sources(linky_core
+    PUBLIC
+        color.hpp
+        math.hpp
+        math_defs.hpp
+        random.hpp
+        vector.hpp
+    PRIVATE
+        math.cpp
 )

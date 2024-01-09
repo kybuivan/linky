@@ -1,7 +1,6 @@
+#include <catch2/catch_test_macros.hpp>
 #include <core/reflection/reflection_enum.hpp>
-#include <iostream>
 
-using namespace linky::reflection;
 enum class Num : int32_t
 {
     ONE,
@@ -9,10 +8,8 @@ enum class Num : int32_t
     THREE
 };
 
-int main()
-{
-    std::cout << enum_to_string(Num::ONE) << std::endl;
-    std::cout << enum_to_string(Num::TWO) << std::endl;
-    std::cout << enum_to_string(Num::THREE) << std::endl;
-    return 0;
+TEST_CASE("[reflection] reflection enum") {
+    REQUIRE(linky::reflection::enum_to_string(Num::ONE) == "ONE");
+    REQUIRE(linky::reflection::enum_to_string(Num::TWO) == "TWO");
+    REQUIRE(linky::reflection::enum_to_string(Num::THREE) == "THREE");
 }
