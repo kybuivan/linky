@@ -1,7 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
-#include <core/os/thread_pool.hpp>
+#include <core/concurrency/thread_pool.hpp>
 
-namespace linky::core {
+namespace linky::concurrency {
 TEST_CASE ("[thread pool]") {
     thread_pool pool = thread_pool();
     int g = 0;

@@ -1,9 +1,14 @@
 #include "thread_pool.hpp"
+#include <concurrentqueue.h>
 
-namespace linky::core {
+namespace linky::concurrency {
+using std::chrono::high_resolution_clock;
+using std::chrono::duration_cast;
+using std::chrono::microseconds;
+using std::chrono::milliseconds;
+
 thread_pool::thread_pool(size_t num)
 {
-    Expects(num > 0);
     start(num);
 }
 

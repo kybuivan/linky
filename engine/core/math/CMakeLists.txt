@@ -1,7 +1,9 @@
 include(glm)
+include(eigen)
 target_link_libraries(linky_core
     PUBLIC
         external::glm
+        external::eigen
 )
 
 target_sources(linky_core
@@ -9,8 +11,9 @@ target_sources(linky_core
         color.hpp
         math.hpp
         math_defs.hpp
+        math_utils.hpp
         random.hpp
-        vector.hpp
     PRIVATE
         math.cpp
+        math_utils.cpp
 )

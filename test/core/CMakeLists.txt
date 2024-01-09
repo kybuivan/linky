@@ -8,8 +8,8 @@ target_sources(linky_core_tests
 
 #add_subdirectory(base)
 #add_subdirectory(conformance)
-#add_subdirectory(conversion)
-#add_subdirectory(functional)
+add_subdirectory(concurrency)
+add_subdirectory(profiler)
 add_subdirectory(math)
 add_subdirectory(parser)
 add_subdirectory(reflection)
@@ -24,3 +24,8 @@ target_link_libraries(linky_core_tests
         linky::core
         external::catch
 )
+
+include(CTest)
+include(ParseAndAddCatchTests)
+set(PARSE_CATCH_TESTS_ADD_TARGET_IN_TEST_NAME Off)
+ParseAndAddCatchTests(linky_core_tests)

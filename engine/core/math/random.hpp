@@ -22,7 +22,7 @@
 #include <core/math/vector.hpp>
 #include <random>
 
-namespace linky::core {
+namespace linky::math {
 struct random_number_generator {
     uint64_t state;
 

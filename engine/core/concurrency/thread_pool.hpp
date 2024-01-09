@@ -19,24 +19,24 @@
 // SOFTWARE.
 
 #pragma once
-#include <mutex>
-#include <queue>
-#include <thread>
-#include <list>
-#include <memory>
 #include <atomic>
-#include <future>
+#include <condition_variable>
 #include <functional>
-#include <type_traits>
-#include <core/templates/noncopyable.hpp>
-#include <core/error/assert.hpp>
+#include <mutex>
+#include <string>
+#include <string_view>
+#include <thread>
+#include <vector>
 
-namespace linky::core {
+namespace linky::concurrency {
+
 using task = std::function<void()>;
-class thread_pool : public noncopyable {
+
+class thread_pool {
 public:
+    thread_pool(const thread_pool&) = delete;
+    auto operator=(const thread_pool&) -> thread_pool = delete;
     thread_pool(size_t num = std::thread::hardware_concurrency());
-    
     ~thread_pool();
 
     void stop();

@@ -20,7 +20,9 @@
 
 #pragma once
 #include <cmath>
-#include "core/math/vector.hpp"
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
+#include <glm/vec4.hpp>
 #include <glm/mat3x3.hpp>
 #include <glm/mat4x4.hpp>
 #include <glm/fwd.hpp>
@@ -43,8 +45,14 @@
 #include <glm/gtx/transform.hpp>
 #include <glm/gtx/vector_angle.hpp>
 #include <glm/gtx/scalar_multiplication.hpp>
+#include <Eigen/Core>
+#include <Eigen/Geometry>
 
 namespace linky::core {
+using vec2 = glm::vec2;
+using vec3 = glm::vec3;
+using vec4 = glm::vec4;
+
 using point = vec2;
 using size = vec2;
 using rect = vec4;

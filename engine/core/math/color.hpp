@@ -22,6 +22,6 @@
 
 #include <core/math/vector.hpp>
 
-namespace linky::core {
+namespace linky::math {
     
 }
